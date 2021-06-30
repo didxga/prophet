@@ -3,4 +3,7 @@
     <string name="quiz_title">who will won the next Pubg International invitational?</string>
     <string name="quiz_desc">bla bla bla bla</string>
     <string name="quiz_count">100</string>
+    <string name="nav_quiz">QUIZ</string>
+    <string name="nav_leaderboard">LEADERBOARD</string>
+    <string name="nav_me">ME</string>
 </resources>
