@@ -1,14 +1,10 @@
 package com.orange.prophet.ui
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +21,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
+
+import android.util.Log
 
 class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -93,7 +92,16 @@ class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
             override fun onFailure(call: Call<ArrayList<Quiz>>, t: Throwable) {
                 //${t.message}
-                Toast.makeText(requireContext(), "Error occurred while fetching quiz", Toast.LENGTH_SHORT).show()
+
+                if (t is IOException) {
+                    Log.d("Orange_Prophet","network error: "+ t.message)
+                    Toast.makeText(requireContext(), "network error"+t.message, Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d("Orange_Prophet","unexcepted error: "+ t.message)
+                    Toast.makeText(requireContext(), "unexcepted error"+t.message, Toast.LENGTH_SHORT).show()
+                }
+
+                //Toast.makeText(requireContext(), "Error occurred while fetching quiz", Toast.LENGTH_SHORT).show()
             }
         })
     }
