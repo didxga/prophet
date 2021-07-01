@@ -4,7 +4,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 data class Quiz(
-      val id: String,
+      val id: Int,
       val title: String,
       val createdAt: Date,
       val endAt: Date,

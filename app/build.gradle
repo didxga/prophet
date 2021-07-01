@@ -21,14 +21,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", 'SERVER_URL', '"http://123.127.237.180/prophet/"'
+            buildConfigField "String", 'SERVER_URL', '"http://123.127.237.180:7070/"'
         }
         debug {
-            buildConfigField "String", 'SERVER_URL', '"http://123.127.237.180/prophet/"'
+            buildConfigField "String", 'SERVER_URL', '"http://123.127.237.180:7070/"'
         }
     }
     defaultConfig {
-        buildConfigField "String", 'SERVER_URL', '"http://123.127.237.180/prophet/"'
+        buildConfigField "String", 'SERVER_URL', '"http://123.127.237.180:7070/"'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

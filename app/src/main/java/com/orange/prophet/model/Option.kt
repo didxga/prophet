@@ -1,6 +1,7 @@
 package com.orange.prophet.ui.model
 
 data class Option(
-        val id: String,
+        val id: Int,
         val desc: String,
+        val seq: Int
 )

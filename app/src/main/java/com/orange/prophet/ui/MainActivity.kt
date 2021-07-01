@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val actionBar = supportActionBar
-        val colorDrawable = ColorDrawable(Color.parseColor("#6AA571"))
+        val colorDrawable = ColorDrawable(Color.parseColor("#000000"))
         actionBar!!.setBackgroundDrawable(colorDrawable)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)

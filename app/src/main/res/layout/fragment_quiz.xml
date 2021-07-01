@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:background="#6AA571"
+        android:background="#ececf1"
         android:paddingVertical="10dp"
         android:scrollbars="vertical" />
 

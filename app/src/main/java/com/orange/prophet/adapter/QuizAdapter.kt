@@ -1,5 +1,6 @@
 package com.orange.prophet.ui.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -30,7 +31,7 @@ class QuizAdapter(
         setPropertiesForArticleViewHolder(holder, quiz)
         holder.cardView.setOnClickListener {
             val intent = Intent(holder.cardView.context, QuizDetailActivity::class.java)
-            intent.putExtra("key", "123")
+            intent.putExtra("quiz", quizList.get(position).id)
             holder.cardView.context.startActivity(intent)
         }
     }

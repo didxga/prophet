@@ -1,6 +1,5 @@
 package com.orange.prophet.ui.model
 
-import java.util.*
 import kotlin.collections.ArrayList
 
 data class Question(
@@ -9,5 +8,5 @@ data class Question(
         val title: String,
         val desc: String,
         val type: String,
-        val options: ArrayList<Option>
+        val option: ArrayList<Option>
 )
