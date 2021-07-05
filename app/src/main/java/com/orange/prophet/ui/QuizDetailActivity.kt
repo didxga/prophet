@@ -2,9 +2,7 @@ package com.orange.prophet.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.ViewGroup
+import android.view.*
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +10,8 @@ import com.orange.prophet.BuildConfig
 import com.orange.prophet.R
 import com.orange.prophet.ui.api.QuestionEndpoint
 import com.orange.prophet.ui.model.Question
+import com.orange.prophet.adapter.QuestionViewAdapter
+import kotlinx.android.synthetic.main.activity_quiz_detail.*
 import kotlinx.android.synthetic.main.view_option_text.view.*
 import kotlinx.android.synthetic.main.view_stakced_card.view.*
 import retrofit2.Call
@@ -29,6 +29,8 @@ class QuizDetailActivity : AppCompatActivity() {
     private lateinit var questionList: ArrayList<Question>
 
     private lateinit var inflater: LayoutInflater
+
+    private val questionViewList = ArrayList<QuestionViewAdapter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,24 +57,32 @@ class QuizDetailActivity : AppCompatActivity() {
     private fun inflate() {
         val container = findViewById<RelativeLayout>(R.id.container)
         var i=1
-        for (question in questionList) {
-            val view = this.inflater.inflate(R.layout.view_stakced_card, container, false)
-            view.question_title.setText(question.title)
-            for (option in question.option) {
-                val optionView = this.inflater.inflate(
-                    R.layout.view_option_text,
-                    view.option_container,
-                    false
-                )
-                optionView.option_text.text = option.desc
-                view.option_container.addView(optionView)
-            }
-            var params = view.card_scrollable.getLayoutParams() as ViewGroup.MarginLayoutParams
+        for (index in questionList.size-1 downTo 0) {
+            val question = questionList.get(index)
+
+            val questionView = QuestionViewAdapter(question, this.inflater, container)
+            questionViewList.add(questionView)
+
+            var params = questionView.view.card_scrollable.getLayoutParams() as ViewGroup.MarginLayoutParams
             params.bottomMargin = 20 * i
-            container.addView(view)
-            view.card_scrollable.requestLayout()
+            container.addView(questionView.view)
+            questionView.view.card_scrollable.requestLayout()
             i++
         }
+        hookEvent()
+    }
+
+    private fun hookEvent() {
+        this.next_button.setOnClickListener {
+            if (questionViewList.size > 0) {
+                val questionview = questionViewList.get(questionViewList.size - 1)
+                if (questionview.chosen) {
+                    val view = questionViewList.removeAt(questionViewList.size - 1)
+                    (view.view.parent as ViewGroup).removeView(view.view)
+                }
+            }
+        }
+
     }
 
     private fun fetchContent(quizId: Int) {
