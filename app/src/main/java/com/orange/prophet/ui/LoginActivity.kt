@@ -14,18 +14,6 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var mEmailText:EditText
     private lateinit var mPasswordText:EditText
-
-    //[checkbox]remember the password
-    private lateinit var mRememberPWCheckBox:CheckBox
-    //[flag]remember the password
-    private var mPasswordFlag = false
-    //[checkbox]auto login
-    private lateinit var mAutoLoginCheckBox:CheckBox
-    //[flag] auto login
-    private var mAutoLoginFlag = false
-
-    private var userPassword: String? = ""
-
     private lateinit var mLoginButton: Button
     private lateinit var mRegisterButton: Button
 
@@ -35,42 +23,24 @@ class LoginActivity : AppCompatActivity() {
 
         mEmailText = findViewById(R.id.email_text)
         mPasswordText = findViewById(R.id.password_text)
-        mRememberPWCheckBox = findViewById(R.id.remember_password)
-        mAutoLoginCheckBox = findViewById(R.id.login_auto)
         mLoginButton = findViewById(R.id.login_button)
         mRegisterButton = findViewById(R.id.register_button)
         val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
-
+        var userToken: String ? = ""
         if (sharedPreferences != null) {
-            val userEmail = sharedPreferences.getString("email", "")
-            userPassword = sharedPreferences.getString("password", "")
-            mPasswordFlag = sharedPreferences.getBoolean("rememberpw", false)
-            mAutoLoginFlag = sharedPreferences.getBoolean("autologin", false)
-            mEmailText.setText(userEmail)
+            userToken = sharedPreferences.getString("usertoken", "")
         }
 
-        if (mPasswordFlag) {
-            mRememberPWCheckBox.isChecked = true
-            mPasswordText.setText(userPassword)
-        }
-
-        if (mAutoLoginFlag) {
-            mAutoLoginCheckBox.isChecked = true
-            val email = mEmailText.text.toString()
-            val password = mPasswordText.getText().toString()
-            login(email, password)
-        } else{
-            mAutoLoginCheckBox.isChecked = false
-        }
-        //register listener
-        mLoginButton.setOnClickListener(mButtonListener)
-        mRegisterButton.setOnClickListener(mButtonListener)
-        mRememberPWCheckBox.setOnCheckedChangeListener{ _, isChecked ->
-        if (isChecked){
-            mPasswordFlag = true;
+        if (userToken?.isNotEmpty()!!) {
+            // auto login
+            // TODO: send login request to the server, following code will be moved to the callback function
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
         }else{
-            mPasswordFlag = false;
-        }
+            // show login screen
+            //register listener
+            mLoginButton.setOnClickListener(mButtonListener)
+            mRegisterButton.setOnClickListener(mButtonListener)
         }
     }
 
@@ -80,26 +50,6 @@ class LoginActivity : AppCompatActivity() {
                 //create SharedPreferences
                 val email = mEmailText.text.toString()
                 var password = mPasswordText.text.toString()
-                val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-
-                editor.putString("email", email)
-
-                // TODO：password encrypt
-                //  password = MD5Utils.getMD5(password)
-
-                editor.putBoolean("rememberpw", mPasswordFlag)
-                if(mPasswordFlag) {
-                    editor.putString("password", password)
-                }else{
-                    editor.putString("password", "")
-                }
-
-                mAutoLoginFlag = mAutoLoginCheckBox.isChecked
-
-                editor.putBoolean("autologin", mAutoLoginFlag)
-
-                editor.commit()
 
                 login(email, password)
             }
@@ -132,10 +82,16 @@ class LoginActivity : AppCompatActivity() {
             //TODO: call server login api
             //communicate with server
 
-            //if not success, show error
+            //TODO: if not success, show error
             //showResponse(response)
 
-            //success, launch main activity
+            //TODO: if success, save the token and launch main activity
+//            val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
+//            val editor = sharedPreferences.edit()
+//
+//            editor.putString("usertoken", )
+//            editor.commit()
+
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
             return null

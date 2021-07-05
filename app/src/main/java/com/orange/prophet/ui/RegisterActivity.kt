@@ -13,19 +13,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var mEmailText:EditText
     private lateinit var mPasswordText:EditText
-
-    //[checkbox]remember the password
-    private lateinit var mRememberPWCheckBox:CheckBox
-    //[flag]remember the password
-    private var mPasswordFlag = false
-    //[checkbox]auto login
-    private lateinit var mAutoLoginCheckBox:CheckBox
-    //[flag] auto login
-    private var mAutoLoginFlag = false
-
-    private var userPassword: String? = ""
-
-    private lateinit var mLoginButton: Button
     private lateinit var mRegisterButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,8 +60,13 @@ class RegisterActivity : AppCompatActivity() {
             //if not success, show error
             //showResponse(response)
 
-            //success, launch login activity
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            //TODO: if success, save the token and launch main activity
+//            val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
+//            val editor = sharedPreferences.edit()
+//
+//            editor.putString("usertoken", )
+//            editor.commit()
+            val intent = Intent(this@RegisterActivity, MainActivity::class.java)
             startActivity(intent)
             return null
         }

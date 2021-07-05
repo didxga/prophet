@@ -34,32 +34,9 @@ android:layout_margin="16dp">
 </LinearLayout>
 
 <LinearLayout
-    android:id="@+id/checkbox_option"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/inputText">
-
-    <CheckBox
-        android:id="@+id/remember_password"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="Remember password" />
-
-    <CheckBox
-        android:id="@+id/login_auto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black"
-        android:text="auto login" />
-</LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/checkbox_option">
 
     <Button
         android:id="@+id/login_button"

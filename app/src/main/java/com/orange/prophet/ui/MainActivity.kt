@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(){
             }
 
             R.id.nav_me -> {
-                val thirdFragment = QuizFragment()
+                val thirdFragment = AccountFragment()
                 openFragment(thirdFragment)
                 return@OnNavigationItemSelectedListener true
             }
