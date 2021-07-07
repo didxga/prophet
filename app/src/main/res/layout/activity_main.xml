@@ -16,7 +16,7 @@
         android:id="@+id/navigationView"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:background="?android:attr/windowBackground"
+        android:background="#F3F0ED"
         app:itemIconTint="@drawable/selector_bottom_nav"
         app:itemTextColor="@drawable/selector_bottom_nav"
         app:layout_constraintBottom_toBottomOf="parent"

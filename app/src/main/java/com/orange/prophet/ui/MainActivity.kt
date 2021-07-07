@@ -15,9 +15,8 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val actionBar = supportActionBar
-        val colorDrawable = ColorDrawable(Color.parseColor("#000000"))
-        actionBar!!.setBackgroundDrawable(colorDrawable)
+
+        supportActionBar?.hide();
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

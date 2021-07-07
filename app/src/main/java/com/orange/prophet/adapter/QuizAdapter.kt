@@ -40,11 +40,9 @@ class QuizAdapter(
         holder.cardView.idProphetQuizTitle.text = quiz?.title
         holder.cardView.idProphetQuizDes.text = quiz?.title
         if(quiz?.status == "=open") {
-            holder.cardView.idProphetQuizStatus.text = "Open"
-            holder.cardView.idProphetQuizStatus.setTextColor(Color.parseColor("#7ce9d0"))
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#eedcc5"))
         } else {
-            holder.cardView.idProphetQuizStatus.text = "Completed"
-            holder.cardView.idProphetQuizStatus.setTextColor(Color.parseColor("#A61A28"))
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#e38342"))
         }
     }
 
