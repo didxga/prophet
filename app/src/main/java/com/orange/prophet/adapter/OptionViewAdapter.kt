@@ -1,5 +1,6 @@
 package com.orange.prophet.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import com.orange.prophet.R
@@ -29,6 +30,7 @@ class OptionViewAdapter (option: Option, var inflater: LayoutInflater, var conta
         optionView.setOnClickListener {
             container.resetChoose(this)
             optionView.setBackgroundResource(R.drawable.text_selected_border)
+            optionView.option_text.setTextColor(Color.parseColor("#2E2EFF"))
         }
     }
 }
