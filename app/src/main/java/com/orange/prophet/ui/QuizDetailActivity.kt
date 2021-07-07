@@ -1,6 +1,7 @@
 package com.orange.prophet.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.RelativeLayout
@@ -50,7 +51,25 @@ class QuizDetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        finish()
+
+         //TODO: need check with cater
+        val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
+        var userToken: String ? = ""
+        // if already login, send the answer to server
+        if (sharedPreferences != null) {
+            userToken = sharedPreferences.getString("usertoken", "")
+            if (userToken?.isNotEmpty()!!) {
+                //  TODO: send the answer to server
+
+                // back to the quiz list
+                finish()
+                return true
+            }
+        }
+        //not login, go to login activity
+        val intent = Intent(this@QuizDetailActivity, LoginActivity::class.java)
+        startActivity(intent)
+
         return true
     }
 

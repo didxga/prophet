@@ -1,5 +1,7 @@
 package com.orange.prophet.ui
 
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +41,17 @@ class AccountFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
         mMyQuizListButton.setOnClickListener(mButtonListener)
 
+        val sharedPreferences = getActivity()?.getSharedPreferences("prophetApp", MODE_PRIVATE)
+        var userToken: String ? = ""
+        if (sharedPreferences != null) {
+            userToken = sharedPreferences.getString("usertoken", "")
+            //do nothing
+            if (userToken?.isNotEmpty()!!) return rootView
+        }
+        //go to login activity
+        val intent = Intent(getActivity(), LoginActivity::class.java)
+        startActivity(intent)
+
         return rootView
     }
 
@@ -58,27 +71,6 @@ class AccountFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
         }
     }
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        val retrofit: Retrofit = makeRetrofit()
-//        quizEndpoint = retrofit.create(QuizEndpoint::class.java)
-//        quizList = ArrayList<Quiz>()
-//        quizAdapter = QuizAdapter(quizList)
-//
-//        swipe_refresh.setOnRefreshListener(this)
-//        swipe_refresh.setColorSchemeResources(R.color.colorAccent)
-//
-//        linearLayoutManager = LinearLayoutManager(requireContext())
-//        recycler_view.apply {
-//            setHasFixedSize(true)
-//            layoutManager = linearLayoutManager
-//            itemAnimator = DefaultItemAnimator()
-//            adapter = quizAdapter
-//        }
-//
-//        hookScrollListenerForRecycleView()
-//        fetchContent(curPage)
-//    }
 
 
     private fun makeRetrofit(): Retrofit {
@@ -89,6 +81,6 @@ class AccountFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onRefresh() {
-        TODO("Not yet implemented")
+        //TODO
     }
 }
