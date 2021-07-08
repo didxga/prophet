@@ -9,24 +9,27 @@
         android:layout_height="74dp"
         android:layout_marginLeft="75dp"
         android:layout_marginTop="75dp"
+        android:backgroundTint="#6AA571"
         style="?android:attr/borderlessButtonStyle"
         android:text="My quiz list" />
 
     <Button
-        android:id="@+id/changepassword_button"
+        android:id="@+id/myaccount_button"
         android:layout_width="255dp"
         android:layout_height="74dp"
         android:layout_marginLeft="75dp"
-        android:text="Change password"
+        android:text="My account"
+        android:backgroundTint="#6AA571"
         style="?android:attr/borderlessButtonStyle"
         android:layout_below="@+id/myquizlist_button"/>
 
     <Button
-        android:id="@+id/logout_button"
+        android:id="@+id/about_button"
         android:layout_width="255dp"
         android:layout_height="74dp"
         android:layout_marginLeft="75dp"
-        android:text="Logout"
-        android:layout_below="@+id/changepassword_button"
+        android:text="About"
+        android:backgroundTint="#6AA571"
+        android:layout_below="@+id/myaccount_button"
         style="?android:attr/borderlessButtonStyle"/>
 </RelativeLayout>

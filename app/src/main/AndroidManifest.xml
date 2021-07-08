@@ -25,6 +25,9 @@
         </activity>
         <activity android:name=".ui.LoginActivity">
         </activity>
+        <activity android:name=".ui.AccountDetailActivity">
+        </activity>
+
     </application>
 
 </manifest>

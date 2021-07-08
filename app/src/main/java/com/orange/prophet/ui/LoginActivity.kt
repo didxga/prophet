@@ -7,7 +7,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.orange.prophet.BuildConfig
 import com.orange.prophet.R
-import com.orange.prophet.api.LoginEndpoint
+import com.orange.prophet.api.AccountEndPoint
+import com.orange.prophet.ui.model.Account
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +19,7 @@ import java.io.*
 class LoginActivity : AppCompatActivity() {
 
     private val mServerURL = BuildConfig.SERVER_URL
-    private lateinit var mLoginEndpoint: LoginEndpoint
+    private lateinit var mLoginEndpoint: AccountEndPoint
     private lateinit var mEmailText:EditText
     private lateinit var mPasswordText:EditText
     private lateinit var mLoginButton: Button
@@ -28,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.login)
 
         val retrofit: Retrofit = makeRetrofit()
-        mLoginEndpoint = retrofit.create(LoginEndpoint::class.java)
+        mLoginEndpoint = retrofit.create(AccountEndPoint::class.java)
 
         mEmailText = findViewById(R.id.email_text)
         mPasswordText = findViewById(R.id.password_text)
@@ -51,21 +52,25 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(email:String, password: String) {
-        val call = mLoginEndpoint.register(email, password)
-        call.enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>
-            ) {
+        var call = mLoginEndpoint.register(email, password)
+        call.enqueue(object : Callback<Account> {
+            override fun onResponse(call: Call<Account>, response: Response<Account>) {
                 //get the token
-                val token: String? = response.body()
-                if (token != null) {
-                    if (token.isNotEmpty()) {
+                var accountInfo: Account? = response.body()
+                if ((accountInfo != null)&&(accountInfo.token != null)) {
+                    if (accountInfo.token.isNotEmpty()) {
                         //store the token
-                        val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
-                        val editor = sharedPreferences.edit()
-                        editor.putString("usertoken", token)
+                        val sharedPreferences = application.getSharedPreferences("prophetApp", MODE_PRIVATE)
+                        var editor = sharedPreferences.edit()
+                        editor.putString("email", accountInfo.user.email)
+                        editor.putString("username", accountInfo.user.username)
+                        editor.putString("firstname", accountInfo.user.firstname)
+                        editor.putString("lastname", accountInfo.user.lastname)
+                        editor.putString("usertoken", accountInfo.token)
                         editor.commit()
 
                         finish()
+                        return
                     }
                 }
                 //failed
@@ -76,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
                 ).show()
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<Account>, t: Throwable) {
                 //${t.message}
                 if (t is IOException) {
                     Log.d("Orange_Prophet","Network error: "+ t.message)

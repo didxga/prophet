@@ -3,13 +3,13 @@ package com.orange.prophet.ui.model
 import java.util.*
 
 data class User(
-        val id: String,
-        val userName: String,
-        val firstName: String,
-        val LastName: String,
-        val phone: String,
         val email: String,
-        val createdAt: Date,
-        val password: String,
-        val status: String
+        val username: String,
+        val firstname: String,
+        val lastname: String,
+)
+
+data class Account(
+        val user: User,
+        val token: String,
 )
