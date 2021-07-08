@@ -1,101 +1,104 @@
 package com.orange.prophet.ui
 
-import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.orange.prophet.BuildConfig
 import com.orange.prophet.R
+import com.orange.prophet.api.AccountEndPoint
+import com.orange.prophet.ui.model.Account
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.*
 
 class LoginActivity : AppCompatActivity() {
 
+    private val mServerURL = BuildConfig.SERVER_URL
+    private lateinit var mLoginEndpoint: AccountEndPoint
     private lateinit var mEmailText:EditText
     private lateinit var mPasswordText:EditText
     private lateinit var mLoginButton: Button
-    private lateinit var mRegisterButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
+        val retrofit: Retrofit = makeRetrofit()
+        mLoginEndpoint = retrofit.create(AccountEndPoint::class.java)
+
         mEmailText = findViewById(R.id.email_text)
         mPasswordText = findViewById(R.id.password_text)
         mLoginButton = findViewById(R.id.login_button)
-        mRegisterButton = findViewById(R.id.register_button)
-        val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
-        var userToken: String ? = ""
-        if (sharedPreferences != null) {
-            userToken = sharedPreferences.getString("usertoken", "")
-        }
 
-        if (userToken?.isNotEmpty()!!) {
-            // auto login
-            // TODO: send login request to the server, following code will be moved to the callback function
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-        }else{
-            // show login screen
-            //register listener
-            mLoginButton.setOnClickListener(mButtonListener)
-            mRegisterButton.setOnClickListener(mButtonListener)
-        }
+        //register listener
+        mLoginButton.setOnClickListener(mButtonListener)
+
     }
 
     private var mButtonListener = View.OnClickListener { v ->
         when (v.id) {
             R.id.login_button -> {
                 //create SharedPreferences
-                val email = mEmailText.text.toString()
-                var password = mPasswordText.text.toString()
-
+                val email = this@LoginActivity.mEmailText.text.toString()
+                val password = this@LoginActivity.mPasswordText.text.toString()
                 login(email, password)
             }
-            R.id.register_button -> {
-                register()
+        }
+    }
+
+    private fun login(email:String, password: String) {
+        var call = mLoginEndpoint.register(email, password)
+        call.enqueue(object : Callback<Account> {
+            override fun onResponse(call: Call<Account>, response: Response<Account>) {
+                //get the token
+                var accountInfo: Account? = response.body()
+                if ((accountInfo != null)&&(accountInfo.token != null)) {
+                    if (accountInfo.token.isNotEmpty()) {
+                        //store the token
+                        val sharedPreferences = application.getSharedPreferences("prophetApp", MODE_PRIVATE)
+                        var editor = sharedPreferences.edit()
+                        editor.putString("email", accountInfo.user.email)
+                        editor.putString("username", accountInfo.user.username)
+                        editor.putString("firstname", accountInfo.user.firstname)
+                        editor.putString("lastname", accountInfo.user.lastname)
+                        editor.putString("usertoken", accountInfo.token)
+                        editor.commit()
+
+                        finish()
+                        return
+                    }
+                }
+                //failed
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Error occurred while Login/Register, please try again",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-        }
+
+            override fun onFailure(call: Call<Account>, t: Throwable) {
+                //${t.message}
+                if (t is IOException) {
+                    Log.d("Orange_Prophet","Network error: "+ t.message)
+                    Toast.makeText(this@LoginActivity, "Network error"+t.message, Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d("Orange_Prophet","Unexcepted error: "+ t.message)
+                    Toast.makeText(this@LoginActivity, "Unexcepted error"+t.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
-    private fun login(username: String, password: String) {
-        val task = LoginTask()
-        task.execute()
-    }
-
-    private fun register() {
-        val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-        startActivity(intent)
-    }
-
-
-    private fun showResponse(response: String) {
-        runOnUiThread {
-            Toast.makeText(this@LoginActivity, response, Toast.LENGTH_SHORT).show()
-            finish()
-        }
-    }
-
-    inner class LoginTask : AsyncTask<Void?, Void?, Void?>() {
-        override fun doInBackground(vararg params: Void?): Void? {
-            //TODO: call server login api
-            //communicate with server
-
-            //TODO: if not success, show error
-            //showResponse(response)
-
-            //TODO: if success, save the token and launch main activity
-//            val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
-//            val editor = sharedPreferences.edit()
-//
-//            editor.putString("usertoken", )
-//            editor.commit()
-
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-            return null
-        }
+    private fun makeRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(mServerURL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
 }

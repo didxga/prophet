@@ -42,20 +42,11 @@ android:layout_margin="16dp">
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
         android:text="@string/action_login"
         style="?android:attr/borderlessButtonStyle"
         android:backgroundTint="#6AA571" />
 
-    <Button
-        android:id="@+id/register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/action_register"
-        style="?android:attr/borderlessButtonStyle"
-        android:backgroundTint="#6AA571" />
 </LinearLayout>
 </RelativeLayout>

@@ -7,7 +7,10 @@
     <string name="nav_leaderboard">LEADERBOARD</string>
     <string name="nav_me">ME</string>
     <string name="email_hint">Email</string>
+    <string name="username_hint">User Name</string>
+    <string name="firstname_hint">First Name</string>
+    <string name="lastname_hint">Last Name</string>
     <string name="password_hint">Password</string>
-    <string name="action_login">Login</string>
+    <string name="action_login">Login/Register</string>
     <string name="action_register">Register</string>
 </resources>

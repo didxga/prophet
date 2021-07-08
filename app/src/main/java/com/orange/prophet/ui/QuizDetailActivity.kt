@@ -1,6 +1,5 @@
 package com.orange.prophet.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.RelativeLayout
@@ -44,13 +43,14 @@ class QuizDetailActivity : AppCompatActivity() {
         questionEndpoint = retrofit.create(QuestionEndpoint::class.java)
         questionList = ArrayList<Question>()
 
-        inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         fetchContent(quizId)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        finish()
+
         return true
     }
 
