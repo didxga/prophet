@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(){
             }
 
             R.id.nav_leaderboard -> {
-                val secondFragment = QuizFragment()
+                val secondFragment = LeaderBoardFragment()
                 openFragment(secondFragment)
                 return@OnNavigationItemSelectedListener true
             }
