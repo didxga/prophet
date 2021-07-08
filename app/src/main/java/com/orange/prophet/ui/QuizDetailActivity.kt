@@ -1,10 +1,7 @@
 package com.orange.prophet.ui
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -34,8 +31,6 @@ class QuizDetailActivity : AppCompatActivity() {
 
     private val questionViewList = ArrayList<QuestionViewAdapter>()
 
-    private lateinit var mItemSelectButton: Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -51,40 +46,10 @@ class QuizDetailActivity : AppCompatActivity() {
         inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         fetchContent(quizId)
-
-        mItemSelectButton = findViewById(R.id.next_button)//register listener
-        mItemSelectButton.setOnClickListener(mButtonListener)
-
     }
 
-    private var mButtonListener = View.OnClickListener { v ->
-        when (v.id) {
-            R.id.next_button -> {
-                //TODO
-                //onOptionsItemSelected(item)
-            }
-        }
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-         //TODO: need check with cater
-        val sharedPreferences = application?.getSharedPreferences("prophetApp", MODE_PRIVATE)
-        var userToken: String ? = ""
-        // if already login, send the answer to server
-        if (sharedPreferences != null) {
-            userToken = sharedPreferences.getString("usertoken", "")
-            if (userToken?.isNotEmpty()!!) {
-                //  TODO: send the answer to server
-
-                // back to the quiz list
-                finish()
-                return true
-            }
-        }
-        //not login, go to login activity
-        val intent = Intent(this@QuizDetailActivity, LoginActivity::class.java)
-        startActivity(intent)
 
         return true
     }

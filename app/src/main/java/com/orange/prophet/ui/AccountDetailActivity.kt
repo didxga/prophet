@@ -56,16 +56,16 @@ class AccountDetailActivity : AppCompatActivity() {
         val lastname:String? = sharedPreferences?.getString("lastname","")
 
         if (email != null) {
-            mUserNameText.setText(email)
+            mEmailText.setText(email)
         }
         if (username != null) {
             mUserNameText.setText(username)
         }
         if (firstname != null) {
-            mUserNameText.setText(firstname)
+            mFirstNameText.setText(firstname)
         }
         if (lastname != null) {
-            mUserNameText.setText(lastname)
+            mLastNameText.setText(lastname)
         }
 
         //register listener
@@ -114,9 +114,17 @@ class AccountDetailActivity : AppCompatActivity() {
                         var editor = sharedPreferences.edit()
                         editor.putString("email", accountInfo.user.email)
                         editor.putString("username", accountInfo.user.username)
-                        editor.putString("first", accountInfo.user.firstname)
+                        editor.putString("firstname", accountInfo.user.firstname)
+                        editor.putString("lastname", accountInfo.user.lastname)
                         editor.putString("usertoken", accountInfo.token)
+
                         editor.commit()
+
+                        Toast.makeText(
+                            this@AccountDetailActivity,
+                            "Successfully updated!",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                         finish()
                         return
@@ -125,7 +133,7 @@ class AccountDetailActivity : AppCompatActivity() {
                 //failed
                 Toast.makeText(
                     this@AccountDetailActivity,
-                    "Error occurred while Login/Register, please try again",
+                    "Error occurred while update account, please try again",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -155,6 +163,15 @@ class AccountDetailActivity : AppCompatActivity() {
                 editor.putString("lastname", "")
                 editor.putString("usertoken", "")
                 editor.commit()
+
+                Toast.makeText(
+                    this@AccountDetailActivity,
+                    "Successfully logout!",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                finish()
+                return
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {

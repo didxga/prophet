@@ -7,11 +7,11 @@ import retrofit2.http.*
 interface AccountEndPoint {
 
    @GET("user/log_out")
-    fun logout(@Field("Header Authorization")token:String):Call<Void>
+    fun logout(@Header("Authorization")token:String):Call<Void>
 
     @FormUrlEncoded
     @POST("user/updateAccount")
-    fun updateAccount(@Field("email")email:String, @Field("username")username:String,  @Field("firstname")firstname:String, @Field("lastname")lastname:String,@Field("Header Authorization")token:String):Call<Account>
+    fun updateAccount(@Field("email")email:String, @Field("username")username:String,  @Field("firstname")firstname:String, @Field("lastname")lastname:String,@Header("Authorization")token:String):Call<Account>
 
     @FormUrlEncoded
     @POST("user/register_or_login")
