@@ -1,10 +1,12 @@
 package com.orange.prophet.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.orange.prophet.R
 import com.orange.prophet.ui.model.Question
+import kotlinx.android.synthetic.main.view_option_text.view.*
 import kotlinx.android.synthetic.main.view_stakced_card.view.*
 
 class QuestionViewAdapter(val question: Question,
@@ -35,6 +37,7 @@ class QuestionViewAdapter(val question: Question,
         choice = optionView.optionId
         for ( option in optionsList) {
             option.optionView.setBackgroundResource(R.drawable.text_border)
+            option.optionView.option_text.setTextColor(Color.parseColor("#878787"))
         }
     }
 }

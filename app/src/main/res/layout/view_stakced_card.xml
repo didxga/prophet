@@ -13,38 +13,48 @@
             android:layout_marginTop="10dp"
             android:paddingVertical="25dp"
             app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="#eedcc5"
             android:orientation="vertical"
             app:cardCornerRadius="10dp"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/question_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="20dp"
-                android:text="afsafdsa dsfsf fdsfsdfs fdsfdsfsd fdsfds sfds fdsfs dsfs"
-                android:paddingLeft="10dp"
-                android:paddingRight="6dp"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="0.5"
-                android:gravity="left"
                 android:orientation="vertical"
-                android:layout_height="wrap_content"
-                android:id="@+id/option_container"
-                android:paddingHorizontal="20dp">
-
-                <!-- children here -->
-
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    >
+                    <TextView
+                        android:id="@+id/question_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#5d3f32"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="20dp"
+                        android:text="afsafdsa dsfsf fdsfsdfs fdsfdsfsd fdsfds sfds fdsfs dsfs"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="6dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="left"
                     android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/option_container"
+                    android:paddingHorizontal="20dp">
+
+                    <!-- children here -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="30dp"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

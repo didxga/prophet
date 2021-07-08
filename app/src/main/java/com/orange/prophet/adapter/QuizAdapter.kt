@@ -1,18 +1,18 @@
 package com.orange.prophet.ui.adapter
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.orange.prophet.R
 import com.orange.prophet.ui.QuizDetailActivity
 import com.orange.prophet.ui.model.Quiz
 import kotlinx.android.synthetic.main.card_layout.view.*
+import kotlinx.android.synthetic.main.card_layout.view.idProphetQuizDes
+import kotlinx.android.synthetic.main.card_layout.view.idProphetQuizTitle
+import kotlinx.android.synthetic.main.card_openquiz_layout.view.*
 
 
 class QuizAdapter(
@@ -21,30 +21,38 @@ class QuizAdapter(
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): QuizViewHolder {
-        val itemView: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_layout, viewGroup, false)
+        if(p1 == 1) {
+            val openitemView: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_openquiz_layout, viewGroup, false)
+            return QuizViewHolder(openitemView.card_open_view)
+        } else {
+            val itemView: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_layout, viewGroup, false)
+            return QuizViewHolder(itemView.card_view)
+        }
 
-        return QuizViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: QuizViewHolder, position: Int) {
         val quiz: Quiz = quizList.get(position)
         setPropertiesForArticleViewHolder(holder, quiz)
-        holder.cardView.setOnClickListener {
-            val intent = Intent(holder.cardView.context, QuizDetailActivity::class.java)
-            intent.putExtra("quiz", quizList.get(position).id)
-            holder.cardView.context.startActivity(intent)
-        }
     }
 
     private fun setPropertiesForArticleViewHolder(holder: QuizViewHolder, quiz: Quiz) {
-        holder.cardView.idProphetQuizTitle.text = quiz?.title
-        holder.cardView.idProphetQuizDes.text = quiz?.title
         if(quiz?.status == "=open") {
-            holder.cardView.idProphetQuizStatus.text = "Open"
-            holder.cardView.idProphetQuizStatus.setTextColor(Color.parseColor("#7ce9d0"))
+            holder.cardView.idProphetQuizTitle.text = quiz?.title
+            holder.cardView.idProphetQuizDes.text = quiz?.title
+            holder.cardView.setOnClickListener {
+                val intent = Intent(holder.cardView.context, QuizDetailActivity::class.java)
+                intent.putExtra("quiz", quiz.id)
+                holder.cardView.context.startActivity(intent)
+            }
         } else {
-            holder.cardView.idProphetQuizStatus.text = "Completed"
-            holder.cardView.idProphetQuizStatus.setTextColor(Color.parseColor("#A61A28"))
+            holder.cardView.idProphetQuizTitle.text = quiz?.title
+            holder.cardView.idProphetQuizDes.text = quiz?.title
+            holder.cardView.setOnClickListener {
+                val intent = Intent(holder.cardView.context, QuizDetailActivity::class.java)
+                intent.putExtra("quiz", quiz.id)
+                holder.cardView.context.startActivity(intent)
+            }
         }
     }
 
@@ -52,11 +60,19 @@ class QuizAdapter(
         return quizList.size
     }
 
-    inner class QuizViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val cardView: CardView by lazy { view.card_view}
+    inner class QuizViewHolder(private val view: CardView) : RecyclerView.ViewHolder(view) {
+        val cardView: CardView by lazy { view }
     }
 
     fun setQuizList(quizList: ArrayList<Quiz>) {
         this.quizList = quizList
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (quizList[position].status == "=open") {
+            return 1
+        } else {
+            return 2
+        }
     }
 }
