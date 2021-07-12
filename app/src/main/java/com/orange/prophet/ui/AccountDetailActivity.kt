@@ -25,7 +25,6 @@ class AccountDetailActivity : AppCompatActivity() {
     private lateinit var mUserNameText:EditText
     private lateinit var mFirstNameText:EditText
     private lateinit var mLastNameText:EditText
-    private lateinit var mLogoutButton: Button
     private lateinit var mUpdateAccountButton: Button
     private lateinit var mChangePasswordButton: Button
     private var mToken:String = ""
@@ -42,7 +41,6 @@ class AccountDetailActivity : AppCompatActivity() {
         mUserNameText = findViewById(R.id.account_detail_username_text)
         mFirstNameText = findViewById(R.id.account_detail_firstname_text)
         mLastNameText = findViewById(R.id.account_detail_lastname_text)
-        mLogoutButton = findViewById(R.id.account_detail_logout_button)
         mUpdateAccountButton = findViewById(R.id.account_detail_update_button)
         mChangePasswordButton = findViewById(R.id.account_detail_change_password_button)
 
@@ -62,7 +60,6 @@ class AccountDetailActivity : AppCompatActivity() {
         mLastNameText.setText(lastname)
 
         //register listener
-        mLogoutButton.setOnClickListener(mButtonListener)
         mUpdateAccountButton.setOnClickListener(mButtonListener)
         mChangePasswordButton.setOnClickListener(mButtonListener)
 
@@ -85,10 +82,6 @@ class AccountDetailActivity : AppCompatActivity() {
             }
             R.id.account_detail_change_password_button -> {
 
-            }
-            R.id.account_detail_logout_button -> {
-                logout("Basic $mToken")
-                // back to the quiz list screen
             }
         }
     }
@@ -135,45 +128,6 @@ class AccountDetailActivity : AppCompatActivity() {
             }
         })
     }
-    private  fun logout(token: String){
-        val call = mAccountEndpoint.logout(token)
-        call.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-
-                //reset the account, clear the account data
-                ProphetApplication.instance().resetAccount()
-
-                Toast.makeText(
-                    this@AccountDetailActivity,
-                    "Successfully logout!",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                finish()
-                return
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                //${t.message}
-                if (t is IOException) {
-                    Log.d("Orange_Prophet", "Network error: " + t.message)
-                    Toast.makeText(
-                        this@AccountDetailActivity,
-                        "Network error" + t.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Log.d("Orange_Prophet", "Unexcepted error: " + t.message)
-                    Toast.makeText(
-                        this@AccountDetailActivity,
-                        "Unexcepted error" + t.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
-    }
-
 
     private fun makeRetrofit(): Retrofit {
         return Retrofit.Builder()

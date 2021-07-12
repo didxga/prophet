@@ -91,14 +91,6 @@
                 android:text="UPDATE ACCOUNT"></Button>
 
             <Button
-                android:id="@+id/account_detail_logout_button"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="150dp"
-                android:layout_height="60dp"
-                android:backgroundTint="#6AA571"
-                android:text="LOGOUT"
-                android:layout_below="@+id/account_detail_update_button"></Button>
-            <Button
                 android:id="@+id/account_detail_change_password_button"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="150dp"
