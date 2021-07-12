@@ -1,105 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ececf1"
-    android:focusableInTouchMode="true">
+    android:background="#F2EBE3">
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="370dp"
+        android:layout_height="73dp"
+        android:layout_weight="0.06"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.071"
+        android:background="@drawable/rounded_border_account_item">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.06">
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.84">
-
-            <EditText
-                android:id="@+id/account_detail_email_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/email_hint"
-                android:inputType="textEmailAddress"
-                android:maxLength="100"
-                android:textSize="25sp"
-                android:saveEnabled="false"
-                android:autofillHints="true" />
-
-            <EditText
-                android:id="@+id/account_detail_username_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/account_detail_email_text"
-                android:ems="10"
-                android:hint="@string/username_hint"
-                android:inputType="textPersonName"
-                android:maxLength="100"
-                android:textSize="25sp"
-                android:saveEnabled="false"
-                android:autofillHints="true"/>
-
-            <EditText
-                android:id="@+id/account_detail_firstname_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/account_detail_username_text"
-                android:ems="10"
-                android:hint="@string/firstname_hint"
-                android:inputType="textPersonName"
-                android:maxLength="100"
-                android:textSize="25sp"
-                android:saveEnabled="false"
-                android:autofillHints="true"/>
-
-            <EditText
-                android:id="@+id/account_detail_lastname_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/account_detail_firstname_text"
-                android:ems="10"
-                android:hint="@string/lastname_hint"
-                android:inputType="textPersonName"
-                android:maxLength="100"
-                android:textSize="25sp"
-                android:saveEnabled="false"
-                android:autofillHints="true"/>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="60dp"
-            android:layout_weight="0.1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/account_detail_update_button"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="150dp"
-                android:layout_height="60dp"
-                android:backgroundTint="#6AA571"
-                android:text="UPDATE ACCOUNT"></Button>
-
-            <Button
-                android:id="@+id/account_detail_change_password_button"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="150dp"
-                android:layout_height="60dp"
-                android:backgroundTint="#6AA571"
-                android:text="CHANGE PASSWORD"
-                app:layout_anchor="@+id/linearLayout"
-                app:layout_anchorGravity="bottom|center"></Button>
-        </LinearLayout>
+        <EditText
+            android:id="@+id/account_detail_username_text"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:autofillHints="true"
+            android:ems="10"
+            android:hint="@string/username_hint"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:saveEnabled="false"
+            android:textSize="20dp" />
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="370dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.06"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:background="@drawable/rounded_border_account_item">
+
+        <EditText
+            android:id="@+id/account_detail_firstname_text"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:autofillHints="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:ems="10"
+            android:hint="@string/firstname_hint"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:saveEnabled="false"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="267dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="370dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.06"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        android:background="@drawable/rounded_border_account_item">
+
+        <EditText
+            android:id="@+id/account_detail_lastname_text"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:autofillHints="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:ems="10"
+            android:hint="@string/lastname_hint"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:saveEnabled="false"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="58dp"
+            tools:layout_editor_absoluteY="349dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="370dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="24dp"
+        android:layout_weight="0.06"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        android:background="@drawable/rounded_border_account_item">
+
+        <EditText
+            android:id="@+id/account_detail_email_text"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:autofillHints="true"
+            android:hint="@string/email_hint"
+            android:inputType="textEmailAddress"
+            android:maxLength="100"
+            android:saveEnabled="false"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="140dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/account_detail_change_password_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#6AA571"
+        android:text="CHANGE PASSWORD"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_detail_update_button" />
+
+    <Button
+        android:id="@+id/account_detail_update_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#6AA571"
+        android:text="UPDATE ACCOUNT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

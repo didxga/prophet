@@ -54,10 +54,10 @@ class AccountDetailActivity : AppCompatActivity() {
         val lastname: String? = appInstance.getAccount().user.lastname
 
 
-        mEmailText.setText(email)
-        mUserNameText.setText(username)
-        mFirstNameText.setText(firstname)
-        mLastNameText.setText(lastname)
+        mEmailText.setText("Email:  " + email)
+        mUserNameText.setText("User Name: " + username)
+        mFirstNameText.setText("First Name:  "+firstname)
+        mLastNameText.setText("Last Name:  "+lastname)
 
         //register listener
         mUpdateAccountButton.setOnClickListener(mButtonListener)

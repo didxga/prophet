@@ -60,7 +60,9 @@ class ProphetApplication : Application( ){
         mAccount.user.firstname = ""
         mAccount.user.lastname = ""
         val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
-        sharedPreferences?.edit()?.clear()
+        var editor = sharedPreferences.edit()
+        editor.clear()
+        editor.commit()
     }
 
 

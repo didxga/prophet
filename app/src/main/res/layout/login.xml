@@ -11,12 +11,12 @@
         android:id="@+id/recyclerView"
         android:layout_width="353dp"
         android:layout_height="306dp"
-        android:background="#EDDDA3"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_border_account_item"/>
 
     <EditText
         android:id="@+id/email_text"
