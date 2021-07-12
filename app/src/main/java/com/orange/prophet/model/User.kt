@@ -10,6 +10,6 @@ data class User(
 )
 
 data class Account(
-        var user: User,
+        var user: User ,
         var token: String,
 )

@@ -1,52 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/activity_login"
-android:background="#ececf1"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_margin="16dp">
-
-<LinearLayout
-    android:id="@+id/inputText"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="200dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:background="#f1ebe4">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="353dp"
+        android:layout_height="306dp"
+        android:background="#EDDDA3"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/email_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="292dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="64dp"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         android:maxLength="100"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView" />
 
     <EditText
         android:id="@+id/password_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="284dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
         android:maxLength="100"
-        android:textSize="25sp" />
-</LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/inputText">
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_text" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/action_login"
         style="?android:attr/borderlessButtonStyle"
-        android:backgroundTint="#6AA571" />
-
-</LinearLayout>
-</RelativeLayout>
+        android:layout_width="281dp"
+        android:layout_height="51dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#6AA571"
+        android:text="@string/action_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_text" />
+</androidx.constraintlayout.widget.ConstraintLayout>

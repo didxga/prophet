@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.orange.prophet.BuildConfig
+import com.orange.prophet.ProphetApplication
 import com.orange.prophet.R
 import com.orange.prophet.api.AccountEndPoint
 import com.orange.prophet.ui.model.Account
@@ -57,21 +58,11 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Account>, response: Response<Account>) {
                 //get the token
                 var accountInfo: Account? = response.body()
-                if ((accountInfo != null)&&(accountInfo.token != null)) {
-                    if (accountInfo.token.isNotEmpty()) {
-                        //store the token
-                        val sharedPreferences = application.getSharedPreferences("prophetApp", MODE_PRIVATE)
-                        var editor = sharedPreferences.edit()
-                        editor.putString("email", accountInfo.user.email)
-                        editor.putString("username", accountInfo.user.username)
-                        editor.putString("firstname", accountInfo.user.firstname)
-                        editor.putString("lastname", accountInfo.user.lastname)
-                        editor.putString("usertoken", accountInfo.token)
-                        editor.commit()
+                if (accountInfo != null) {
+                    ProphetApplication.instance().setAccount(accountInfo)
 
-                        finish()
-                        return
-                    }
+                    finish()
+                    return
                 }
                 //failed
                 Toast.makeText(

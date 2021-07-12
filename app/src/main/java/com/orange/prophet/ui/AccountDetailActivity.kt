@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.orange.prophet.BuildConfig
+import com.orange.prophet.ProphetApplication
 import com.orange.prophet.R
 import com.orange.prophet.api.AccountEndPoint
 import com.orange.prophet.ui.model.Account
@@ -27,7 +28,7 @@ class AccountDetailActivity : AppCompatActivity() {
     private lateinit var mLogoutButton: Button
     private lateinit var mUpdateAccountButton: Button
     private lateinit var mChangePasswordButton: Button
-    private lateinit var mToken:String
+    private var mToken:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,28 +46,20 @@ class AccountDetailActivity : AppCompatActivity() {
         mUpdateAccountButton = findViewById(R.id.account_detail_update_button)
         mChangePasswordButton = findViewById(R.id.account_detail_change_password_button)
 
-        //get the account info from sharedPreferences
-        val sharedPreferences = this.application?.getSharedPreferences("prophetApp", MODE_PRIVATE)
-        if(sharedPreferences!=null) {
-            mToken = sharedPreferences.getString("usertoken", "").toString()
-        }
-        val email:String? = sharedPreferences?.getString("email","")
-        val username:String?  = sharedPreferences?.getString("username","")
-        val firstname:String?  = sharedPreferences?.getString("firstname","")
-        val lastname:String? = sharedPreferences?.getString("lastname","")
+        //get the account info
+        val appInstance:ProphetApplication = ProphetApplication.instance()
+        mToken = appInstance.getAccount().token
 
-        if (email != null) {
-            mEmailText.setText(email)
-        }
-        if (username != null) {
-            mUserNameText.setText(username)
-        }
-        if (firstname != null) {
-            mFirstNameText.setText(firstname)
-        }
-        if (lastname != null) {
-            mLastNameText.setText(lastname)
-        }
+        val email: String? = appInstance.getAccount().user.email
+        val username: String? = appInstance.getAccount().user.username
+        val firstname: String? = appInstance.getAccount().user.firstname
+        val lastname: String? = appInstance.getAccount().user.lastname
+
+
+        mEmailText.setText(email)
+        mUserNameText.setText(username)
+        mFirstNameText.setText(firstname)
+        mLastNameText.setText(lastname)
 
         //register listener
         mLogoutButton.setOnClickListener(mButtonListener)
@@ -107,28 +100,20 @@ class AccountDetailActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Account>, response: Response<Account>) {
                 //get the token
                 var accountInfo: Account? = response.body()
-                if ((accountInfo != null)&&(accountInfo.token != null)) {
-                    if (accountInfo.token.isNotEmpty()) {
-                        //store the token
-                        val sharedPreferences = application.getSharedPreferences("prophetApp", MODE_PRIVATE)
-                        var editor = sharedPreferences.edit()
-                        editor.putString("email", accountInfo.user.email)
-                        editor.putString("username", accountInfo.user.username)
-                        editor.putString("firstname", accountInfo.user.firstname)
-                        editor.putString("lastname", accountInfo.user.lastname)
-                        editor.putString("usertoken", accountInfo.token)
 
-                        editor.commit()
+                if (accountInfo != null) {
+                    //update the account value in application
+                    ProphetApplication.instance().setAccount(accountInfo)
 
-                        Toast.makeText(
-                            this@AccountDetailActivity,
-                            "Successfully updated!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    Toast.makeText(
+                        this@AccountDetailActivity,
+                        "Successfully updated!",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                        finish()
-                        return
-                    }
+                    finish()
+                    return
+
                 }
                 //failed
                 Toast.makeText(
@@ -154,15 +139,9 @@ class AccountDetailActivity : AppCompatActivity() {
         val call = mAccountEndpoint.logout(token)
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                //clear the sharedPreferences value
-                val sharedPreferences = this@AccountDetailActivity.application.getSharedPreferences("prophetApp", MODE_PRIVATE)
-                var editor = sharedPreferences.edit()
-                editor.putString("email", "")
-                editor.putString("username", "")
-                editor.putString("firstname", "")
-                editor.putString("lastname", "")
-                editor.putString("usertoken", "")
-                editor.commit()
+
+                //reset the account, clear the account data
+                ProphetApplication.instance().resetAccount()
 
                 Toast.makeText(
                     this@AccountDetailActivity,

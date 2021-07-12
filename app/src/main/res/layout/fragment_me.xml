@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2EBE3">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="424dp"
+        android:layout_height="239dp"
+        android:background="#29956b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_me_photo"
+        android:layout_width="97dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_me" />
+
+    <TextView
+        android:id="@+id/fragment_me_text_username"
+        android:layout_width="259dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
+        android:text="TextView"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_me_photo"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
+    <Button
+        android:id="@+id/fragment_me_button_account"
+        android:layout_width="255dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#6AA571"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.814"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_me_text_email" />
+
+
+    <EditText
+        android:id="@+id/fragment_me_text_email"
+        android:layout_width="221dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_me_imageView_Email"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_me_text_username" />
+
+    <Button
+        android:id="@+id/fragment_me_button_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#6AA571"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <ImageView
+        android:id="@+id/fragment_me_imageView_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_me_photo"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_me_text_username"
+        app:srcCompat="@android:drawable/sym_action_email" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="383dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_border_account_item"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+
+        <ImageView
+            android:id="@+id/fragment_me_image_my_quIz_list"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:srcCompat="@drawable/ic_quiz" />
+
+        <Button
+            android:id="@+id/fragment_me_button_my_quIz_list"
+            android:layout_width="280dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F2DCC2"
+            android:text="My Quiz List"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_me_image_my_quIz_list" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="377dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_border_account_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/fragment_me_image_term_policy"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:srcCompat="@android:drawable/btn_star"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="355dp" />
+
+        <Button
+            android:id="@+id/fragment_me_button_term_policy"
+            android:layout_width="280dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F2DCC2"
+            android:text="Term policy"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_me_image_my_quIz_list" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="378dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_border_account_item"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        <ImageView
+            android:id="@+id/fragment_me_image_about"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:srcCompat="@drawable/ic_me"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="439dp" />
+
+        <Button
+            android:id="@+id/fragment_me_button_about"
+            android:layout_width="280dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F2DCC2"
+            android:text="ABOUT"
+            app:layout_constraintStart_toEndOf="parent"
+            tools:layout_editor_absoluteX="101dp"
+            tools:layout_editor_absoluteY="439dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

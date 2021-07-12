@@ -22,16 +22,7 @@ class MainActivity : AppCompatActivity(){
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        val  b: Bundle? = intent.extras
-        val isFromLoginActivity: Boolean = b?.getBoolean("fromLogin") ?: false
-        if (isFromLoginActivity) {
-            val bottomBar:BottomNavigationView = findViewById(R.id.navigationView)
-            val item: MenuItem = bottomBar.getMenu().findItem(R.id.nav_me)
-            item.isChecked = true
-            openFragment(AccountFragment())
-        } else {
-            openFragment(QuizFragment())
-        }
+        openFragment(QuizFragment())
     }
 
     private fun openFragment(fragment: Fragment) {
@@ -59,21 +50,6 @@ class MainActivity : AppCompatActivity(){
             R.id.nav_me -> {
                 val thirdFragment = AccountFragment()
                 openFragment(thirdFragment)
-//                val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
-//                var userToken: String ? = ""
-//                if (sharedPreferences != null) {
-//                    userToken = sharedPreferences.getString("usertoken", "")
-//                    if (userToken?.isNotEmpty()!!) {
-//                        // go to my account fragment
-//                        val thirdFragment = AccountFragment()
-//                        openFragment(thirdFragment)
-//                        return@OnNavigationItemSelectedListener true
-//                    }
-//                }
-//                //go to login activity
-//                val intent = Intent(this@MainActivity, LoginActivity::class.java)
-//                intent.putExtra("callFrom","myaccount")
-//                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
         }
