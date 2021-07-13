@@ -1,8 +1,5 @@
 package com.orange.prophet.ui
 
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -42,7 +39,7 @@ class MainActivity : AppCompatActivity(){
             }
 
             R.id.nav_leaderboard -> {
-                val secondFragment = QuizFragment()
+                val secondFragment = LeaderBoardFragment()
                 openFragment(secondFragment)
                 return@OnNavigationItemSelectedListener true
             }
