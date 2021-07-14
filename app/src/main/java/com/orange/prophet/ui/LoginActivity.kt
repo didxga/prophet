@@ -1,9 +1,13 @@
 package com.orange.prophet.ui
 
+import android.app.Dialog
+import android.app.ProgressDialog.show
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.orange.prophet.BuildConfig
 import com.orange.prophet.ProphetApplication
@@ -20,29 +24,31 @@ import java.io.*
 class LoginActivity : AppCompatActivity() {
 
     private val mServerURL = BuildConfig.SERVER_URL
-    private lateinit var mLoginEndpoint: AccountEndPoint
+    private lateinit var mAccountEndpoint: AccountEndPoint
     private lateinit var mEmailText:EditText
     private lateinit var mPasswordText:EditText
     private lateinit var mLoginButton: Button
-
+    private lateinit var mForgetPasswordText: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
         supportActionBar?.hide();
 
         val retrofit: Retrofit = makeRetrofit()
-        mLoginEndpoint = retrofit.create(AccountEndPoint::class.java)
+        mAccountEndpoint = retrofit.create(AccountEndPoint::class.java)
 
         mEmailText = findViewById(R.id.email_text)
         mPasswordText = findViewById(R.id.password_text)
         mLoginButton = findViewById(R.id.login_button)
+        mForgetPasswordText = findViewById(R.id.forget_password_textview)
 
         //register listener
-        mLoginButton.setOnClickListener(mButtonListener)
+        mLoginButton.setOnClickListener(mOnClickListener)
+        mForgetPasswordText.setOnClickListener(mOnClickListener)
 
     }
 
-    private var mButtonListener = View.OnClickListener { v ->
+    private var mOnClickListener = View.OnClickListener { v ->
         when (v.id) {
             R.id.login_button -> {
                 //create SharedPreferences
@@ -50,11 +56,48 @@ class LoginActivity : AppCompatActivity() {
                 val password = this@LoginActivity.mPasswordText.text.toString()
                 login(email, password)
             }
+            R.id.forget_password_textview->{
+
+                forgetPassword(ProphetApplication.instance().getAccount().user.email)
+
+
+            }
         }
     }
 
+    private fun forgetPassword(email:String) {
+
+        var call = mAccountEndpoint.changePassword(email)
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+
+                val builder = AlertDialog.Builder(this@LoginActivity)
+//                builder.setMessage("")
+                builder.setMessage(R.string.acquire_password_message)
+                builder.setPositiveButton(android.R.string.ok) { _, _ ->
+
+                    this@LoginActivity.finish()
+                }
+                builder.create().show()
+                return
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                //${t.message}
+                if (t is IOException) {
+                    Log.d("Orange_Prophet","Network error: "+ t.message)
+                    Toast.makeText(this@LoginActivity, "Network error"+t.message, Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d("Orange_Prophet","Unexpected error: "+ t.message)
+                    Toast.makeText(this@LoginActivity, "Unexcepted error"+t.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+
     private fun login(email:String, password: String) {
-        var call = mLoginEndpoint.register(email, password)
+        var call = mAccountEndpoint.register(email, password)
         call.enqueue(object : Callback<Account> {
             override fun onResponse(call: Call<Account>, response: Response<Account>) {
                 //get the token
@@ -93,4 +136,8 @@ class LoginActivity : AppCompatActivity() {
             .build()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
 }

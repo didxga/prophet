@@ -13,4 +13,6 @@
     <string name="password_hint">Password</string>
     <string name="action_login">Sign in/Sign on</string>
     <string name="action_register">Register</string>
+    <string name="password_dialog_confirm">OK</string>
+    <string name="acquire_password_message">Already sent an email to you, please modify the password by the link in the email!</string>>
 </resources>
