@@ -1,5 +1,6 @@
 package com.orange.prophet.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,13 +19,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.*
 
 class AccountDetailActivity : AppCompatActivity() {
-
     private val mServerURL = BuildConfig.SERVER_URL
     private lateinit var mAccountEndpoint: AccountEndPoint
-    private lateinit var mEmailText:EditText
-    private lateinit var mUserNameText:EditText
-    private lateinit var mFirstNameText:EditText
-    private lateinit var mLastNameText:EditText
+    private lateinit var mEmailText:TextView
+    private lateinit var mUserNameText:TextView
+    private lateinit var mFirstNameText:TextView
+    private lateinit var mLastNameText:TextView
     private lateinit var mUpdateAccountButton: Button
     private lateinit var mChangePasswordButton: Button
     private var mToken:String = ""
@@ -32,7 +32,7 @@ class AccountDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_detail)
-
+        supportActionBar?.hide();
 
         val retrofit: Retrofit = makeRetrofit()
         mAccountEndpoint = retrofit.create(AccountEndPoint::class.java)
@@ -48,16 +48,10 @@ class AccountDetailActivity : AppCompatActivity() {
         val appInstance:ProphetApplication = ProphetApplication.instance()
         mToken = appInstance.getAccount().token
 
-        val email: String? = appInstance.getAccount().user.email
-        val username: String? = appInstance.getAccount().user.username
-        val firstname: String? = appInstance.getAccount().user.firstname
-        val lastname: String? = appInstance.getAccount().user.lastname
-
-
-        mEmailText.setText("Email:  " + email)
-        mUserNameText.setText("User Name: " + username)
-        mFirstNameText.setText("First Name:  "+firstname)
-        mLastNameText.setText("Last Name:  "+lastname)
+        mEmailText.text = appInstance.getAccount().user.email
+        mUserNameText.text = appInstance.getAccount().user.username
+        mFirstNameText.text = appInstance.getAccount().user.firstname
+        mLastNameText.text = appInstance.getAccount().user.lastname
 
         //register listener
         mUpdateAccountButton.setOnClickListener(mButtonListener)
@@ -68,61 +62,53 @@ class AccountDetailActivity : AppCompatActivity() {
     private var mButtonListener = View.OnClickListener { v ->
         when (v.id) {
             R.id.account_detail_update_button -> {
-                var email = ""
-                email = mEmailText.text.toString()
-                var username = ""
-                username = mUserNameText.text.toString()
-                var firstname = ""
-                firstname= mFirstNameText.text.toString()
-                var lastname = ""
-                lastname= mLastNameText.text.toString()
-
-                updateUserAccount(email,username,firstname,lastname,"Basic $mToken")
-
+                //start account edit activity
+                val intent = Intent(this, AccountInfoEditActivity::class.java)
+                startActivity(intent)
             }
             R.id.account_detail_change_password_button -> {
-
+//                //start change password activity
+//                val intent = Intent(this, AccountPasswordChangeActivity::class.java)
+//                startActivity(intent)
+                updatePassword(mEmailText.text.toString());
             }
         }
     }
+    override fun onResume() {
+        super.onResume()
+        //get the account info
+        val appInstance:ProphetApplication = ProphetApplication.instance()
+        mToken = appInstance.getAccount().token
 
+        mEmailText.text = appInstance.getAccount().user.email
+        mUserNameText.text = appInstance.getAccount().user.username
+        mFirstNameText.text = appInstance.getAccount().user.firstname
+        mLastNameText.text = appInstance.getAccount().user.lastname
 
-    private fun updateUserAccount(email:String, username: String,firstname:String, lastname:String,token:String) {
-        var call = mAccountEndpoint.updateAccount(email, username,firstname,lastname,token)
-        call.enqueue(object : Callback<Account> {
-            override fun onResponse(call: Call<Account>, response: Response<Account>) {
-                //get the token
-                var accountInfo: Account? = response.body()
+    }
 
-                if (accountInfo != null) {
-                    //update the account value in application
-                    ProphetApplication.instance().setAccount(accountInfo)
+    private fun updatePassword(email:String) {
+
+        var call = mAccountEndpoint.changePassword(email)
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
                     Toast.makeText(
                         this@AccountDetailActivity,
-                        "Successfully updated!",
-                        Toast.LENGTH_SHORT
+                        "Already send a email to you, please modify your password by the link in the mail!",
+                        Toast.LENGTH_LONG
                     ).show()
 
-                    finish()
                     return
-
-                }
-                //failed
-                Toast.makeText(
-                    this@AccountDetailActivity,
-                    "Error occurred while update account, please try again",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
 
-            override fun onFailure(call: Call<Account>, t: Throwable) {
+            override fun onFailure(call: Call<Void>, t: Throwable) {
                 //${t.message}
                 if (t is IOException) {
                     Log.d("Orange_Prophet","Network error: "+ t.message)
                     Toast.makeText(this@AccountDetailActivity, "Network error"+t.message, Toast.LENGTH_SHORT).show()
                 } else {
-                    Log.d("Orange_Prophet","Unexcepted error: "+ t.message)
+                    Log.d("Orange_Prophet","Unexpected error: "+ t.message)
                     Toast.makeText(this@AccountDetailActivity, "Unexcepted error"+t.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -135,6 +121,4 @@ class AccountDetailActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-
 }

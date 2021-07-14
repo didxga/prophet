@@ -17,4 +17,9 @@ interface AccountEndPoint {
     @POST("user/register_or_login")
     fun register(@Field("email") email:String ,@Field("password")password:String ):Call<Account>
 
+    @FormUrlEncoded
+    @POST("user/forgot_password")
+    fun changePassword(@Field("email") email:String):Call<Void>
+
+
 }

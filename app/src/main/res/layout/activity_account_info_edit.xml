@@ -8,27 +8,26 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/account_edit_linearLayout_1"
         android:layout_width="370dp"
         android:layout_height="73dp"
         android:layout_weight="0.06"
+        android:background="@drawable/rounded_border_account_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071"
-        android:background="@drawable/rounded_border_account_item">
+        app:layout_constraintVertical_bias="0.139">
 
         <TextView
-            android:id="@+id/account_detail_username_title"
+            android:id="@+id/account_edit_username_title"
             android:layout_width="112dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:autofillHints="true"
             android:ems="10"
-            android:hint="@string/username_hint"
             android:maxLength="100"
             android:saveEnabled="false"
             android:text="User Name :"
@@ -38,8 +37,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/account_detail_username_text"
+        <EditText
+            android:id="@+id/account_edit_username_text"
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -47,27 +46,25 @@
             android:drawablePadding="10dp"
             android:inputType="textPersonName"
             android:maxLength="100"
-            android:maxLines="1"
             android:saveEnabled="false"
-            android:textSize="20dp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout6"
+        android:id="@+id/account_edit_linearLayout_2"
         android:layout_width="370dp"
         android:layout_height="73dp"
         android:layout_marginTop="20dp"
         android:layout_weight="0.06"
+        android:background="@drawable/rounded_border_account_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:background="@drawable/rounded_border_account_item">
+        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_1">
 
         <TextView
-            android:id="@+id/account_detail_firstname_title"
+            android:id="@+id/account_edit_firstname_title"
             android:layout_width="112dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -83,35 +80,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/account_detail_firstname_text"
+        <EditText
+            android:id="@+id/account_edit_firstname_text"
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:autofillHints="true"
             android:drawablePadding="10dp"
-            android:maxLines="1"
             android:inputType="textPersonName"
             android:maxLength="100"
             android:saveEnabled="false"
-            android:textSize="20dp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout7"
+        android:id="@+id/account_edit_linearLayout_3"
         android:layout_width="370dp"
         android:layout_height="73dp"
         android:layout_marginTop="20dp"
         android:layout_weight="0.06"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_2"
         android:background="@drawable/rounded_border_account_item">
 
         <TextView
-            android:id="@+id/account_detail_lastname_texttname_title"
+            android:id="@+id/account_edit_lastname_text_title"
             android:layout_width="112dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -127,8 +123,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/account_detail_lastname_text"
+        <EditText
+            android:id="@+id/account_edit_lastname_text"
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -137,25 +133,24 @@
             android:inputType="textPersonName"
             android:maxLength="100"
             android:saveEnabled="false"
-            android:textSize="20dp"
-            android:maxLines="1"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout8"
+        android:id="@+id/account_edit_linearLayout_4"
         android:layout_width="370dp"
         android:layout_height="73dp"
         android:layout_marginTop="24dp"
         android:layout_weight="0.06"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_3"
         android:background="@drawable/rounded_border_account_item">
 
         <TextView
-            android:id="@+id/account_detail_email_title"
+            android:id="@+id/account_edit_email_title"
             android:layout_width="112dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -171,8 +166,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/account_detail_email_text"
+        <EditText
+            android:id="@+id/account_edit_email_text"
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -181,39 +176,22 @@
             android:inputType="textPersonName"
             android:maxLength="100"
             android:saveEnabled="false"
-            android:textSize="20dp"
-            android:maxLines="1"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/account_detail_change_password_button"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="370dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="28dp"
-        android:backgroundTint="#6AA571"
-        android:text="Change Password"
-        app:layout_anchorGravity="bottom|center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_detail_update_button"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/account_detail_update_button"
+        android:id="@+id/account_edit_deliver_button"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="370dp"
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
         android:backgroundTint="#6AA571"
-        android:text="Modify My Account Info"
+        android:text="Update My Account Info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
