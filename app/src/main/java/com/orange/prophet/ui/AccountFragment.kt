@@ -1,6 +1,5 @@
 package com.orange.prophet.ui
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +13,6 @@ import com.orange.prophet.BuildConfig
 import com.orange.prophet.ProphetApplication
 import com.orange.prophet.R
 import com.orange.prophet.api.AccountEndPoint
-import kotlinx.android.synthetic.main.fragment_me.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
