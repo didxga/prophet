@@ -81,7 +81,8 @@ class AccountFragment: Fragment(){
 
             R.id.fragment_me_button_about -> {
                 //TODO: go to about screen
-
+                val intent = Intent(activity, AboutActivity::class.java)
+                startActivity(intent)
                 }
 
             R.id.fragment_me_button_logout -> {
