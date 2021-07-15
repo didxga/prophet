@@ -72,7 +72,6 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
                 val builder = AlertDialog.Builder(this@LoginActivity)
-//                builder.setMessage("")
                 builder.setMessage(R.string.acquire_password_message)
                 builder.setPositiveButton(android.R.string.ok) { _, _ ->
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.orange.prophet.BuildConfig
 import com.orange.prophet.ProphetApplication
@@ -93,11 +94,13 @@ class AccountDetailActivity : AppCompatActivity() {
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
-                    Toast.makeText(
-                        this@AccountDetailActivity,
-                        "Already send a email to you, please modify your password by the link in the mail!",
-                        Toast.LENGTH_LONG
-                    ).show()
+                val builder = AlertDialog.Builder(this@AccountDetailActivity)
+                builder.setMessage(R.string.acquire_password_message)
+                builder.setPositiveButton(android.R.string.ok) { _, _ ->
+
+                    this@AccountDetailActivity.finish()
+                }
+                builder.create().show()
 
                     return
             }
