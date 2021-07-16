@@ -101,10 +101,10 @@
         android:layout_height="73dp"
         android:layout_marginTop="20dp"
         android:layout_weight="0.06"
+        android:background="@drawable/rounded_border_account_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_2"
-        android:background="@drawable/rounded_border_account_item">
+        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_2">
 
         <TextView
             android:id="@+id/account_edit_lastname_text_title"
@@ -116,10 +116,10 @@
             android:ems="10"
             android:maxLength="100"
             android:saveEnabled="false"
+            android:text="Last Name :"
             android:textColor="#5d3f32"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Last Name :"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
@@ -138,60 +138,59 @@
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/account_edit_linearLayout_4"
-        android:layout_width="370dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="24dp"
-        android:layout_weight="0.06"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_3"
-        android:background="@drawable/rounded_border_account_item">
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/account_edit_linearLayout_4"-->
+    <!--        android:layout_width="370dp"-->
+    <!--        android:layout_height="73dp"-->
+    <!--        android:layout_marginTop="24dp"-->
+    <!--        android:layout_weight="0.06"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_3"-->
+    <!--        android:background="@drawable/rounded_border_account_item">-->
 
-        <TextView
-            android:id="@+id/account_edit_email_title"
-            android:layout_width="112dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:autofillHints="true"
-            android:ems="10"
-            android:maxLength="100"
-            android:saveEnabled="false"
-            android:text="Email :"
-            android:textColor="#5d3f32"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+    <!--        <TextView-->
+    <!--            android:id="@+id/account_edit_email_title"-->
+    <!--            android:layout_width="112dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="10dp"-->
+    <!--            android:layout_marginTop="20dp"-->
+    <!--            android:autofillHints="true"-->
+    <!--            android:ems="10"-->
+    <!--            android:maxLength="100"-->
+    <!--            android:saveEnabled="false"-->
+    <!--            android:text="Email :"-->
+    <!--            android:textColor="#5d3f32"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="parent" />-->
 
-        <EditText
-            android:id="@+id/account_edit_email_text"
-            android:layout_width="234dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:autofillHints="true"
-            android:drawablePadding="10dp"
-            android:inputType="textPersonName"
-            android:maxLength="100"
-            android:saveEnabled="false"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-    </LinearLayout>
+    <!--        <EditText-->
+    <!--            android:id="@+id/account_edit_email_text"-->
+    <!--            android:layout_width="234dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="20dp"-->
+    <!--            android:autofillHints="true"-->
+    <!--            android:drawablePadding="10dp"-->
+    <!--            android:inputType="textPersonName"-->
+    <!--            android:maxLength="100"-->
+    <!--            android:saveEnabled="false"-->
+    <!--            android:textSize="18sp"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="parent" />-->
+    <!--    </LinearLayout>-->
 
     <Button
         android:id="@+id/account_edit_deliver_button"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#6AA571"
         android:text="Update My Account Info"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_4" />
+        app:layout_constraintTop_toBottomOf="@+id/account_edit_linearLayout_3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

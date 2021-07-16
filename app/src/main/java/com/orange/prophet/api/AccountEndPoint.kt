@@ -11,7 +11,7 @@ interface AccountEndPoint {
 
     @FormUrlEncoded
     @POST("user/updateAccount")
-    fun updateAccount(@Field("email")email:String, @Field("username")username:String,  @Field("firstname")firstname:String, @Field("lastname")lastname:String,@Header("Authorization")token:String):Call<Account>
+    fun updateAccount( @Field("username")username:String,  @Field("firstname")firstname:String, @Field("lastname")lastname:String,@Header("Authorization")token:String):Call<Account>
 
     @FormUrlEncoded
     @POST("user/register_or_login")
@@ -19,7 +19,9 @@ interface AccountEndPoint {
 
     @FormUrlEncoded
     @POST("user/forgot_password")
-    fun changePassword(@Field("email") email:String):Call<Void>
+    fun forgotPassword(@Field("email") email:String):Call<Void>
 
-
+    @FormUrlEncoded
+    @POST("user/change_password")
+    fun changePassword(@Field("oldpassword") oldpassword:String,@Field("newpassword") newpassword:String,@Header("Authorization")token:String):Call<String>
 }
