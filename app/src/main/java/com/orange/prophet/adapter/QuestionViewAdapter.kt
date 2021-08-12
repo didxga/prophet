@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.view_stakced_card.view.*
 
 class QuestionViewAdapter(val question: Question,
                           var inflater: LayoutInflater,
-                          var container: ViewGroup
+                          var container: ViewGroup,
+                          var isFinish: Boolean
 ) {
 
     var view: View
@@ -27,10 +28,16 @@ class QuestionViewAdapter(val question: Question,
        view.question_title.setText(question.title)
 
        for (option in question.option) {
-           val ov = OptionViewAdapter(option, inflater, this)
+           val ov = OptionViewAdapter(option, inflater, this, isFinish)
            optionsList.add(ov)
        }
    }
+
+    fun setChoose(myAnswer: Int) {
+        for ( option in optionsList) {
+            option.choose(myAnswer)
+        }
+    }
 
     fun resetChoose(optionView: OptionViewAdapter) {
         chosen = true

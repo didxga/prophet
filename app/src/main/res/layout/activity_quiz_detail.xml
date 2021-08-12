@@ -13,7 +13,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.06">
-
+            <ImageButton
+                android:id="@+id/idQuizDetailBackBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/ic_action_back"
+                android:layout_marginLeft="10dp"
+                android:paddingRight="6dp"/>
         </LinearLayout>
         <RelativeLayout
             android:id="@+id/container"
@@ -33,7 +40,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="CONTINUE"
+                android:text="SUBMIT"
                 android:id="@+id/next_button"
                 style="?android:attr/borderlessButtonStyle"
                 android:backgroundTint="#6AA571">

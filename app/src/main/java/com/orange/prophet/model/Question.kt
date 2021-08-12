@@ -8,5 +8,6 @@ data class Question(
         val title: String,
         val desc: String,
         val type: String,
+        val judge: Int,
         val option: ArrayList<Option>
 )

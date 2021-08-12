@@ -43,6 +43,7 @@ class QuizAdapter(
             holder.cardView.setOnClickListener {
                 val intent = Intent(holder.cardView.context, QuizDetailActivity::class.java)
                 intent.putExtra("quiz", quiz.id)
+                intent.putExtra("isfinish", false)
                 holder.cardView.context.startActivity(intent)
             }
         } else {
@@ -51,6 +52,7 @@ class QuizAdapter(
             holder.cardView.setOnClickListener {
                 val intent = Intent(holder.cardView.context, QuizDetailActivity::class.java)
                 intent.putExtra("quiz", quiz.id)
+                intent.putExtra("isfinish", true)
                 holder.cardView.context.startActivity(intent)
             }
         }
