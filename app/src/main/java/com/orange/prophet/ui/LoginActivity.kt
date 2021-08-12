@@ -57,17 +57,18 @@ class LoginActivity : AppCompatActivity() {
                 login(email, password)
             }
             R.id.forget_password_textview->{
-
-                forgetPassword(ProphetApplication.instance().getAccount().user.email)
-
-
+                if(this@LoginActivity.mEmailText.text.toString().isEmpty()) {
+                    Toast.makeText(this@LoginActivity, "Please input your email address!", Toast.LENGTH_LONG).show()
+                }else{
+                    forgotPassword(ProphetApplication.instance().getAccount().user.email)
+                }
             }
         }
     }
 
-    private fun forgetPassword(email:String) {
+    private fun forgotPassword(email:String) {
 
-        var call = mAccountEndpoint.changePassword(email)
+        var call = mAccountEndpoint.forgotPassword(email)
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
@@ -99,20 +100,26 @@ class LoginActivity : AppCompatActivity() {
         var call = mAccountEndpoint.register(email, password)
         call.enqueue(object : Callback<Account> {
             override fun onResponse(call: Call<Account>, response: Response<Account>) {
-                //get the token
-                var accountInfo: Account? = response.body()
-                if (accountInfo != null) {
-                    ProphetApplication.instance().setAccount(accountInfo)
+                if (response.body() != null) {
+                    //get the token
+                    var accountInfo: Account? = response.body()
+
+                    if (accountInfo != null) {
+                        ProphetApplication.instance().setAccount(accountInfo)
+                    }
 
                     finish()
                     return
+                }else {
+                    //failed
+
+                    Toast.makeText(
+                        this@LoginActivity,
+                        response.message(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                //failed
-                Toast.makeText(
-                    this@LoginActivity,
-                    "Error occurred while Login/Register, please try again",
-                    Toast.LENGTH_SHORT
-                ).show()
+
             }
 
             override fun onFailure(call: Call<Account>, t: Throwable) {

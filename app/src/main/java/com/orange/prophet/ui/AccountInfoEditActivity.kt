@@ -21,12 +21,10 @@ class AccountInfoEditActivity : AppCompatActivity() {
 
     private val mServerURL = BuildConfig.SERVER_URL
     private lateinit var mAccountEndpoint: AccountEndPoint
-    private lateinit var mEmailText:TextView
     private lateinit var mUserNameText:TextView
     private lateinit var mFirstNameText:TextView
     private lateinit var mLastNameText:TextView
     private lateinit var mUpdateAccountButton: Button
-    private lateinit var mChangePasswordButton: Button
     private var mToken:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +35,7 @@ class AccountInfoEditActivity : AppCompatActivity() {
         val retrofit: Retrofit = makeRetrofit()
         mAccountEndpoint = retrofit.create(AccountEndPoint::class.java)
 
-        mEmailText = findViewById(R.id.account_edit_email_text)
+
         mUserNameText = findViewById(R.id.account_edit_username_text)
         mFirstNameText = findViewById(R.id.account_edit_firstname_text)
         mLastNameText = findViewById(R.id.account_edit_lastname_text)
@@ -51,8 +49,6 @@ class AccountInfoEditActivity : AppCompatActivity() {
     private var mButtonListener = View.OnClickListener { v ->
         when (v.id) {
             R.id.account_edit_deliver_button -> {
-                var email = ""
-                email = mEmailText.text.toString()
                 var username = ""
                 username = mUserNameText.text.toString()
                 var firstname = ""
@@ -60,8 +56,8 @@ class AccountInfoEditActivity : AppCompatActivity() {
                 var lastname = ""
                 lastname= mLastNameText.text.toString()
 
-                updateUserAccount(email,username,firstname,lastname,"Basic $mToken")
-
+                mToken = ProphetApplication.instance().getAccount().token
+                updateUserAccount(username,firstname,lastname,"Basic $mToken")
             }
             R.id.account_detail_change_password_button -> {
 
@@ -70,8 +66,8 @@ class AccountInfoEditActivity : AppCompatActivity() {
     }
 
 
-    private fun updateUserAccount(email:String, username: String,firstname:String, lastname:String,token:String) {
-        var call = mAccountEndpoint.updateAccount(email, username,firstname,lastname,token)
+    private fun updateUserAccount(username: String,firstname:String, lastname:String,token:String) {
+        var call = mAccountEndpoint.updateAccount(username,firstname,lastname,token)
         call.enqueue(object : Callback<Account> {
             override fun onResponse(call: Call<Account>, response: Response<Account>) {
                 //get the token
@@ -97,6 +93,8 @@ class AccountInfoEditActivity : AppCompatActivity() {
                         "Error occurred while update account, please try again",
                         Toast.LENGTH_SHORT
                     ).show()
+                    logout()
+
                 }
             }
 
@@ -109,6 +107,42 @@ class AccountInfoEditActivity : AppCompatActivity() {
                     Log.d("Orange_Prophet","Unexcepted error: "+ t.message)
                     Toast.makeText(this@AccountInfoEditActivity, "Unexcepted error"+t.message, Toast.LENGTH_SHORT).show()
                 }
+            }
+
+            //if error occur, logout
+
+        })
+    }
+
+    private  fun logout(){
+        val call = mAccountEndpoint.logout(ProphetApplication.instance().getAccount().token)
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+
+                //reset the account, clear the account data
+                ProphetApplication.instance().resetAccount()
+
+                Toast.makeText(
+                    this@AccountInfoEditActivity,
+                    "Some error occur, have to logout!",
+                    Toast.LENGTH_LONG
+                ).show()
+
+                finish()
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                //${t.message}
+                //reset the account, clear the account data
+                ProphetApplication.instance().resetAccount()
+
+                Toast.makeText(
+                    this@AccountInfoEditActivity,
+                    "Some error occur, have to logout!",
+                    Toast.LENGTH_LONG
+                ).show()
+
+                finish()
             }
         })
     }
@@ -126,7 +160,6 @@ class AccountInfoEditActivity : AppCompatActivity() {
         val appInstance:ProphetApplication = ProphetApplication.instance()
         mToken = appInstance.getAccount().token
 
-        mEmailText.text = appInstance.getAccount().user.email
         mUserNameText.text = appInstance.getAccount().user.username
         mFirstNameText.text = appInstance.getAccount().user.firstname
         mLastNameText.text = appInstance.getAccount().user.lastname

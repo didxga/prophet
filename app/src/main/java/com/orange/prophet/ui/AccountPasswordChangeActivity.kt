@@ -21,8 +21,9 @@ class AccountPasswordChangeActivity : AppCompatActivity() {
 
     private val mServerURL = BuildConfig.SERVER_URL
     private lateinit var mAccountEndpoint: AccountEndPoint
-    private lateinit var mPasswordText:TextView
-    private lateinit var mPasswordConfirmText:TextView
+    private lateinit var mOldPasswordText:TextView
+    private lateinit var mNewPasswordText:TextView
+    private lateinit var mNewPasswordConfirmText:TextView
     private lateinit var mChangePasswordButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +34,9 @@ class AccountPasswordChangeActivity : AppCompatActivity() {
         val retrofit: Retrofit = makeRetrofit()
         mAccountEndpoint = retrofit.create(AccountEndPoint::class.java)
 
-        mPasswordText = findViewById(R.id.account_edit_password_1_text)
-        mPasswordConfirmText = findViewById(R.id.account_edit_password_2_text)
+        mNewPasswordText = findViewById(R.id.account_edit_password_1_text)
+        mNewPasswordConfirmText = findViewById(R.id.account_edit_password_2_text)
+        mOldPasswordText = findViewById(R.id.account_edit_old_password_text)
 
         mChangePasswordButton = findViewById(R.id.account_edit_password_deliver_button)
 
@@ -46,10 +48,13 @@ class AccountPasswordChangeActivity : AppCompatActivity() {
     private var mButtonListener = View.OnClickListener { v ->
         when (v.id) {
             R.id.account_edit_password_deliver_button -> {
-                val password:String = mPasswordText.text.toString()
-                val passwordConfirm:String = mPasswordConfirmText.text.toString()
+                val password:String = mNewPasswordText.text.toString()
+                val passwordConfirm:String = mNewPasswordConfirmText.text.toString()
                 if(password == passwordConfirm) {
-                    updatePassword(ProphetApplication.instance().getAccount().user.email, password)
+                    val oldPassword:String = mOldPasswordText.text.toString()
+
+                    val token = ProphetApplication.instance().getAccount().token
+                    changePassword(oldPassword, passwordConfirm,"Basic $token")
                 }else{
                     //remind the password should be same
                     Toast.makeText(
@@ -63,48 +68,48 @@ class AccountPasswordChangeActivity : AppCompatActivity() {
     }
 
 
-    private fun updatePassword(email:String, password:String ) {
+    private fun changePassword(oldPassword:String, newPassword:String, token: String ) {
 
-//        var call = mAccountEndpoint.changePassword(email)
-//        call.enqueue(object : Callback<Account> {
-//            override fun onResponse(call: Call<Account>, response: Response<Account>) {
-//                //get the token
-//                var accountInfo: Account? = response.body()
-//
-//                if (accountInfo != null) {
-//                    //update the account value in application
-//                    ProphetApplication.instance().setAccount(accountInfo)
-//
-//                    Toast.makeText(
-//                        this@AccountPasswordChangeActivity,
-//                        "Successfully updated!",
-//                        Toast.LENGTH_LONG
-//                    ).show()
-//
-//                    finish()
-//                    return
-//
-//                }else{
-//                    Toast.makeText(
-//                        this@AccountPasswordChangeActivity,
-//                        "Error occurred while change password, please try again",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    return
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<Account>, t: Throwable) {
-//                //${t.message}
-//                if (t is IOException) {
-//                    Log.d("Orange_Prophet","Network error: "+ t.message)
-//                    Toast.makeText(this@AccountPasswordChangeActivity, "Network error"+t.message, Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Log.d("Orange_Prophet","Unexpected error: "+ t.message)
-//                    Toast.makeText(this@AccountPasswordChangeActivity, "Unexcepted error"+t.message, Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        })
+        var call = mAccountEndpoint.changePassword(oldPassword,newPassword, token)
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                //get the token
+                var token: String? = response.body()
+
+                if (token != null) {
+                    //update the account value in application
+                    ProphetApplication.instance().setToken(token)
+
+                    Toast.makeText(
+                        this@AccountPasswordChangeActivity,
+                        "Successfully updated!",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    finish()
+                    return
+
+                }else{
+                    Toast.makeText(
+                        this@AccountPasswordChangeActivity,
+                        "Error occurred while change password, please try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                //${t.message}
+                if (t is IOException) {
+                    Log.d("Orange_Prophet","Network error: "+ t.message)
+                    Toast.makeText(this@AccountPasswordChangeActivity, "Network error"+t.message, Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d("Orange_Prophet","Unexpected error: "+ t.message)
+                    Toast.makeText(this@AccountPasswordChangeActivity, "Unexcepted error"+t.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun makeRetrofit(): Retrofit {
@@ -116,7 +121,8 @@ class AccountPasswordChangeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        mPasswordText.text = ""
-        mPasswordConfirmText.text = ""
+        mNewPasswordText.text = ""
+        mNewPasswordConfirmText.text = ""
+        mOldPasswordText.text = ""
     }
 }

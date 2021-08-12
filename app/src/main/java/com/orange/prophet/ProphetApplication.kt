@@ -49,6 +49,17 @@ class ProphetApplication : Application( ){
 
     }
 
+    fun setToken(token:String)
+    {
+        val sharedPreferences = getSharedPreferences("prophetApp", MODE_PRIVATE)
+        if(sharedPreferences!=null) {
+            var editor = sharedPreferences.edit()
+            editor.putString("usertoken", token)
+            editor.commit()
+        }
+        mAccount.token = token
+
+    }
     fun getAccount():Account{
         return mAccount;
     }
