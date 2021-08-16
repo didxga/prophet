@@ -1,5 +1,6 @@
 package com.orange.prophet.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
@@ -95,24 +96,37 @@ class QuizDetailActivity : AppCompatActivity() {
                     var choiceId = questionview.choice
                     var questionId = questionview.question.id
                     val appInstance: ProphetApplication = ProphetApplication.instance()
-                    val call = questionEndpoint.answer(questionId, choiceId, "Basic " + appInstance.getAccount().token)
-                    call.enqueue(object : Callback<Void> {
-                        override fun onResponse(
+
+                    val accountToken: String = appInstance.getAccount().token
+
+                    if (accountToken.isEmpty()) {
+                        //go to login activity
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        val call = questionEndpoint.answer(
+                            questionId,
+                            choiceId,
+                            "Basic $accountToken"
+                        )
+                        call.enqueue(object : Callback<Void> {
+                            override fun onResponse(
                                 call: Call<Void>,
                                 response: Response<Void>
-                        ) {
-                            finish()
-                        }
+                            ) {
+                                finish()
+                            }
 
-                        override fun onFailure(call: Call<Void>, t: Throwable) {
-                            //${t.message}
-                            Toast.makeText(
+                            override fun onFailure(call: Call<Void>, t: Throwable) {
+                                //${t.message}
+                                Toast.makeText(
                                     this@QuizDetailActivity,
                                     "Error occurred while connecting to server",
                                     Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    })
+                                ).show()
+                            }
+                        })
+                    }
                 }
             }
         }
@@ -124,26 +138,29 @@ class QuizDetailActivity : AppCompatActivity() {
 
     private fun fetchAnswer(questionId: String, questionViewAdapter: QuestionViewAdapter) {
         val appInstance: ProphetApplication = ProphetApplication.instance()
-        val call = questionEndpoint.getAnswer(questionId, "Basic " + appInstance.getAccount().token)
+        val accountToken:String = appInstance.getAccount().token
+        if(accountToken.isNotEmpty()) {
+            val call = questionEndpoint.getAnswer(questionId, "Basic $accountToken")
 
-        call.enqueue(object : Callback<Int> {
-            override fun onResponse(
+            call.enqueue(object : Callback<Int> {
+                override fun onResponse(
                     call: Call<Int>,
                     response: Response<Int>
-            ) {
-                var answer = response.body()
-                questionViewAdapter.setChoose(answer!!)
-            }
+                ) {
+                    var answer = response.body()
+                    questionViewAdapter.setChoose(answer!!)
+                }
 
-            override fun onFailure(call: Call<Int>, t: Throwable) {
-                //${t.message}
-                Toast.makeText(
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    //${t.message}
+                    Toast.makeText(
                         this@QuizDetailActivity,
                         "Error occurred while fetching user answer",
                         Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+                    ).show()
+                }
+            })
+        }
     }
 
     private fun fetchContent(quizId: Int) {
