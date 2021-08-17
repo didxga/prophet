@@ -62,6 +62,8 @@ class AccountFragment: Fragment(){
         when (v.id) {
             R.id.fragment_me_button_my_quIz_list -> {
                 //TODO: show my quiz list
+                val intent = Intent(activity, MyQuizListActivity::class.java)
+                startActivity(intent)
             }
             R.id.fragment_me_button_account_more -> {
                 //the button is showed "More account info", then it will go to my account info activity
