@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".ui.AboutActivity">
         </activity>
+        <activity android:name=".ui.MyQuizListActivity">
+        </activity>
         <activity android:name=".ui.SplashActivity"
             android:theme="@style/splashScreen">
             <intent-filter>

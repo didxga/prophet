@@ -28,6 +28,7 @@ class AccountFragment: Fragment(){
     private lateinit var mButtonMyAccountMore: ImageButton
     private lateinit var mButtonMyAccountLogin: Button
     private lateinit var mButtonAbout: Button
+    private lateinit var mButtonPrivacyPolicy:Button
     private lateinit var mTextViewUserName: TextView
     private lateinit var mTextViewEmail: TextView
     private lateinit var mButtonLogout: Button
@@ -41,6 +42,7 @@ class AccountFragment: Fragment(){
         mButtonMyAccountMore= rootView.findViewById(R.id.fragment_me_button_account_more) as ImageButton
         mButtonMyAccountLogin= rootView.findViewById(R.id.fragment_me_button_account_login) as Button
         mButtonAbout = rootView.findViewById(R.id.fragment_me_button_about) as Button
+        mButtonPrivacyPolicy = rootView.findViewById(R.id.fragment_me_button_privacy_policy) as Button
         mButtonLogout = rootView.findViewById(R.id.fragment_me_button_logout) as Button
         mTextViewUserName = rootView.findViewById(R.id.fragment_me_text_username) as TextView
         mTextViewEmail = rootView.findViewById(R.id.fragment_me_text_email) as TextView
@@ -49,6 +51,7 @@ class AccountFragment: Fragment(){
         mButtonMyQuizList.setOnClickListener(mButtonListener)
         mButtonMyAccountMore.setOnClickListener(mButtonListener)
         mButtonAbout.setOnClickListener(mButtonListener)
+        mButtonPrivacyPolicy.setOnClickListener(mButtonListener)
         mButtonLogout.setOnClickListener(mButtonListener)
         mButtonMyAccountLogin.setOnClickListener(mButtonListener)
 
@@ -61,7 +64,8 @@ class AccountFragment: Fragment(){
     private var mButtonListener = View.OnClickListener { v ->
         when (v.id) {
             R.id.fragment_me_button_my_quIz_list -> {
-                //TODO: show my quiz list
+                val intent = Intent(activity, MyQuizListActivity::class.java)
+                startActivity(intent)
             }
             R.id.fragment_me_button_account_more -> {
                 //the button is showed "More account info", then it will go to my account info activity
@@ -75,7 +79,7 @@ class AccountFragment: Fragment(){
                 startActivity(intent)
 
             }
-            R.id.fragment_me_button_term_policy -> {
+            R.id.fragment_me_button_privacy_policy -> {
                 //TODO: go to term policy screen
             }
 
