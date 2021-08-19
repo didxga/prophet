@@ -40,8 +40,8 @@ class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
         return inflater.inflate(R.layout.fragment_quiz, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         val retrofit: Retrofit = makeRetrofit()
         quizEndpoint = retrofit.create(QuizEndpoint::class.java)
         quizList = ArrayList<Quiz>()
@@ -61,7 +61,6 @@ class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
         hookScrollListenerForRecycleView()
         fetchContent(curPage)
     }
-
 
     private fun hookScrollListenerForRecycleView() {
         recycler_view
