@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 import android.util.Log
+import kotlinx.android.synthetic.main.fragment_quiz.view.*
 
 class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -36,8 +37,11 @@ class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private var visibleThreshold = 2
     private var curPage = 1
 
+    private lateinit var layoutView: View
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_quiz, container, false)
+        layoutView = inflater.inflate(R.layout.fragment_quiz, container, false)
+        return layoutView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -47,8 +51,8 @@ class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
         quizList = ArrayList<Quiz>()
         quizAdapter = QuizAdapter(quizList)
 
-        swipe_refresh.setOnRefreshListener(this)
-        swipe_refresh.setColorSchemeResources(R.color.colorAccent)
+        layoutView.swipe_refresh.setOnRefreshListener(this)
+        layoutView.swipe_refresh.setColorSchemeResources(R.color.colorAccent)
 
         linearLayoutManager = LinearLayoutManager(requireContext())
         recycler_view.apply {
@@ -86,7 +90,7 @@ class QuizFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 quizList.addAll(response.body()!!)
                 quizAdapter.notifyItemInserted(quizList.size)
                 loading = false
-                swipe_refresh.isRefreshing = false
+                layoutView.swipe_refresh.isRefreshing = false
             }
 
             override fun onFailure(call: Call<ArrayList<Quiz>>, t: Throwable) {

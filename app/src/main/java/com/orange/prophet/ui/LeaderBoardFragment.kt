@@ -24,7 +24,7 @@ import com.orange.prophet.ui.adapter.RankAdapter
 import com.orange.prophet.ui.api.RankEndpoint
 import com.orange.prophet.ui.model.Rank
 import kotlinx.android.synthetic.main.fragment_leaderboard.*
-import kotlinx.android.synthetic.main.fragment_quiz.recycler_view
+import kotlinx.android.synthetic.main.fragment_leaderboard.view.*
 
 class LeaderBoardFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -32,6 +32,7 @@ class LeaderBoardFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var rankEndpoint: RankEndpoint
     private lateinit var rankList: ArrayList<Rank>
     private lateinit var rankAdapter: RankAdapter
+    private lateinit var layoutView: View
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var loading = false
@@ -40,7 +41,8 @@ class LeaderBoardFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private var curPage = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_leaderboard, container, false)
+        layoutView =  inflater.inflate(R.layout.fragment_leaderboard, container, false)
+        return layoutView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -84,18 +86,18 @@ class LeaderBoardFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun inflate(topRankers: MutableList<Rank>) {
         if (topRankers.size >=1) {
-            winner_name.text = topRankers[0].username
-            winner_score.text = topRankers[0].score
+            layoutView.winner_name.text = topRankers[0].username
+            layoutView.winner_score.text = topRankers[0].score
         }
 
         if (topRankers.size >= 2) {
-            runner_up_name.text = topRankers[1].username
-            runner_up_score.text = topRankers[1].score
+            layoutView.runner_up_name.text = topRankers[1].username
+            layoutView.runner_up_score.text = topRankers[1].score
         }
 
         if (topRankers.size >=3) {
-            third_name.text = topRankers[2].username
-            third_score.text = topRankers[2].score
+            layoutView.third_name.text = topRankers[2].username
+            layoutView.third_score.text = topRankers[2].score
         }
     }
 
