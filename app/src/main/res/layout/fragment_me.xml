@@ -116,7 +116,7 @@
         android:layout_marginTop="28dp"
         android:background="@drawable/rounded_border_account_item"
         android:backgroundTint="#F2DCC2"
-        android:drawableLeft="@drawable/ic_quiz"
+        android:drawableLeft="@drawable/ic_list"
         android:drawablePadding="10dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
@@ -132,19 +132,19 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <Button
-        android:id="@+id/fragment_me_button_term_policy"
+        android:id="@+id/fragment_me_button_privacy_policy"
         android:layout_width="380dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_border_account_item"
         android:backgroundTint="#F2DCC2"
-        android:drawableLeft="@drawable/ic_me"
+        android:drawableLeft="@drawable/ic_policy"
         android:drawablePadding="10dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="2"
         android:singleLine="false"
-        android:text="Term Policy"
+        android:text="Privacy Policy"
         android:textColor="#5d3f32"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -160,7 +160,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_border_account_item"
         android:backgroundTint="#F2DCC2"
-        android:drawableLeft="@android:drawable/btn_star"
+        android:drawableLeft="@drawable/ic_info"
         android:drawablePadding="10dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
@@ -172,6 +172,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_term_policy" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_privacy_policy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
