@@ -148,7 +148,9 @@ class QuizDetailActivity : AppCompatActivity() {
                     response: Response<Int>
                 ) {
                     var answer = response.body()
-                    questionViewAdapter.setChoose(answer!!)
+                    if (answer != null) {
+                        questionViewAdapter.setChoose(answer!!)
+                    }
                 }
 
                 override fun onFailure(call: Call<Int>, t: Throwable) {
