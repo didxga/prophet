@@ -3,9 +3,12 @@ package com.orange.prophet.adapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.isVisible
 import com.orange.prophet.R
 import com.orange.prophet.ui.model.Option
+import kotlinx.android.synthetic.main.view_option_result.view.*
 import kotlinx.android.synthetic.main.view_option_text.view.*
+import kotlinx.android.synthetic.main.view_option_text.view.option_text
 import kotlinx.android.synthetic.main.view_stakced_card.view.*
 
 class OptionViewAdapter (option: Option, var inflater: LayoutInflater, var container: QuestionViewAdapter, var isFinish: Boolean) {
@@ -17,7 +20,7 @@ class OptionViewAdapter (option: Option, var inflater: LayoutInflater, var conta
 
     init {
         optionView = this.inflater.inflate(
-            R.layout.view_option_text, container.view.option_container,
+            R.layout.view_option_result, container.view.option_container,
             false
         )
         optionView.option_text.text = option.desc
@@ -25,10 +28,18 @@ class OptionViewAdapter (option: Option, var inflater: LayoutInflater, var conta
         optionId = option.id
 
         if(!isFinish) {
+            optionView.option_percentage_bar.isVisible = false
+            optionView.option_percentage_text.isVisible = false
+            optionView.setBackgroundResource(R.drawable.text_border)
+            optionView.option_text.setTextColor(Color.parseColor("#878787"))
             hookEvent()
+
         } else {
-            optionView.option_text.setBackgroundColor(Color.parseColor("#ababab"))
             optionView.option_text.setTextColor(Color.parseColor("#ffffff"))
+            optionView.setBackgroundResource(R.drawable.item_finished_boder)
+            optionView.option_percentage_bar.progress = 10
+            optionView.option_percentage_bar.isEnabled = false
+            optionView.option_percentage_text.text = "10%"
         }
     }
 
