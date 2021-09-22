@@ -32,10 +32,14 @@
         </activity>
         <activity android:name="com.orange.prophet.ui.MyQuizListActivity">
         </activity>
-        <activity android:name="com.orange.prophet.ui.SplashActivity"
-            android:theme="@style/splashScreen">
+        <activity
+            android:name="com.orange.prophet.ui.PZSplashscreenActivity"
+            android:configChanges="screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/PZ.Splashscreen.Night">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

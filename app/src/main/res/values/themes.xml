@@ -4,8 +4,5 @@
         <item name="android:statusBarColor">@color/backgroundTint</item>
     </style>
 
-    <style name="splashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash</item>
-        <item name="android:statusBarColor">@color/backgroundTint</item>
-    </style>
+
 </resources>

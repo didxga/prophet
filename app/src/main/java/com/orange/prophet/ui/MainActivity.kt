@@ -1,5 +1,7 @@
 package com.orange.prophet.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -20,7 +22,14 @@ class MainActivity : AppCompatActivity(){
 
         openFragment(QuizFragment())
     }
-
+    companion object {
+        fun getIntent(context: Context): Intent {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.action = "data://" + System.currentTimeMillis()
+            return intent
+        }
+    }
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)

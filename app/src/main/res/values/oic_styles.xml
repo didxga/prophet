@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="PZ.Splashscreen.Night" parent="PZ.Splashscreen.Light" />
+
+    <style name="PZ.Splashscreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowBackground">@drawable/oic_splashscreen_layer_dark</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+    <style name="PZ.Splashscreen.Light">
+        <item name="android:windowBackground">@drawable/oic_splashscreen_layer_light</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
+
+</resources>

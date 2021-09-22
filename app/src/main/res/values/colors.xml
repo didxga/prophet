@@ -12,4 +12,7 @@
     <color name="gray">#5b5b5b</color>
     <color name="colorButton">#6AA571</color>
     <color name="backgroundTint">#f1ebe4</color>
+    <color name="colorPrimary">#FFD200</color>
+    <color name="colorPrimaryDark">#FFB400</color>
+    <color name="colorBackground">#EEE</color>
 </resources>
