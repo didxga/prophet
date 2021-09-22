@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.orange.prophet.R
+import org.codechimp.apprater.AppRater
 
 
 class MainActivity : AppCompatActivity(){
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
 
         supportActionBar?.hide();
+
+        AppRater.setPackageName("com.orange.labs.intuitionnetwork");
+        AppRater.app_launched(this);
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
