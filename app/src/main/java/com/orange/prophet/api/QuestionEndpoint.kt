@@ -1,8 +1,6 @@
 package com.orange.prophet.ui.api
 
-import com.orange.prophet.ui.model.Account
 import com.orange.prophet.ui.model.Question
-import com.orange.prophet.ui.model.Quiz
 import retrofit2.Call
 import retrofit2.http.*
 

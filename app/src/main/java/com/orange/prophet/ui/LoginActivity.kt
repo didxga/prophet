@@ -1,8 +1,5 @@
 package com.orange.prophet.ui
 
-import android.app.Dialog
-import android.app.ProgressDialog.show
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View

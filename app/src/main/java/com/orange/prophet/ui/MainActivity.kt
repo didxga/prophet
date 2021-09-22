@@ -1,9 +1,6 @@
 package com.orange.prophet.ui
 
-import android.app.Activity
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView

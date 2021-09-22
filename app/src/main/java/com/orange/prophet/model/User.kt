@@ -1,7 +1,5 @@
 package com.orange.prophet.ui.model
 
-import java.util.*
-
 data class User(
         var email: String,
         var username: String,

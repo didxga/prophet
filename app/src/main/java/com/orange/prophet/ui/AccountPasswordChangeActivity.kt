@@ -9,7 +9,6 @@ import com.orange.prophet.BuildConfig
 import com.orange.prophet.ProphetApplication
 import com.orange.prophet.R
 import com.orange.prophet.api.AccountEndPoint
-import com.orange.prophet.ui.model.Account
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

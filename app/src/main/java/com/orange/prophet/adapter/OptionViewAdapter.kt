@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import com.orange.prophet.R
 import com.orange.prophet.ui.model.Option
 import kotlinx.android.synthetic.main.view_option_result.view.*
-import kotlinx.android.synthetic.main.view_option_text.view.*
 import kotlinx.android.synthetic.main.view_option_text.view.option_text
 import kotlinx.android.synthetic.main.view_stakced_card.view.*
 
