@@ -15,6 +15,6 @@
     <string name="action_register">Register</string>
     <string name="password_dialog_confirm">OK</string>
     <string name="acquire_password_message">Already sent an email to you, please modify the password by the link in the email!</string>>
-    <string name="prophet_about">About this application</string>
     <string name="pz_content_desc_logo">Orange Logo</string>
+    <string name="prophet_about">Intuition Network gathers people who is avid and good at prediction. We give one puzzle question every day or two, user can participate and give their choice. The correct answer will be the option chosen most by user. It bring bit fun and bit relaxing to people in this chaotic world.</string>
 </resources>

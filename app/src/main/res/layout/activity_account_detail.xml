@@ -35,6 +35,7 @@
             android:textColor="#5d3f32"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
@@ -50,6 +51,7 @@
             android:maxLines="1"
             android:saveEnabled="false"
             android:textSize="20dp"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
@@ -80,6 +82,7 @@
             android:textColor="#5d3f32"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
@@ -95,6 +98,7 @@
             android:maxLength="100"
             android:saveEnabled="false"
             android:textSize="20dp"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
@@ -124,6 +128,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Last Name :"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
@@ -139,6 +144,7 @@
             android:saveEnabled="false"
             android:textSize="20dp"
             android:maxLines="1"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
@@ -168,6 +174,7 @@
             android:textColor="#5d3f32"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
@@ -183,6 +190,7 @@
             android:saveEnabled="false"
             android:textSize="20dp"
             android:maxLines="1"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
@@ -200,6 +208,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
+        android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/account_detail_update_button"
         app:layout_constraintVertical_bias="0.055" />
 
@@ -214,6 +223,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
+        android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

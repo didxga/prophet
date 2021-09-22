@@ -42,6 +42,7 @@
         android:textColor="#F1F0F0"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/fragment_me_photo"
         app:layout_constraintTop_toTopOf="@+id/recyclerView" />
 
@@ -67,6 +68,7 @@
         android:layout_marginTop="4dp"
         android:backgroundTint="#6AA571"
         android:text="Sign on/in"
+        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/fragment_me_photo"
         app:layout_constraintTop_toBottomOf="@+id/fragment_me_text_username" />
 
@@ -83,6 +85,7 @@
         android:textColor="#F1F0F0"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/fragment_me_imageView_Email"
         app:layout_constraintTop_toBottomOf="@+id/fragment_me_text_username" />
 
@@ -97,6 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
+        android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_about" />
 
     <ImageView
@@ -126,6 +130,7 @@
         android:textColor="#5d3f32"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +153,7 @@
         android:textColor="#5d3f32"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
@@ -170,6 +176,7 @@
         android:textColor="#5d3f32"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_privacy_policy" />
