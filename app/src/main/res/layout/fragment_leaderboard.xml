@@ -55,7 +55,7 @@
                             app:cardPreventCornerOverlap="false">
                             <ImageView
                                 android:layout_width="100dp"
-                                android:src="@mipmap/ic_avatar"
+                                android:src="@mipmap/ic_avatar2"
                                 android:scaleType="fitXY"
                                 android:layout_height="100dp"/>
                         </androidx.cardview.widget.CardView>
@@ -118,7 +118,7 @@
                             app:cardPreventCornerOverlap="false">
                             <ImageView
                                 android:layout_width="120dp"
-                                android:src="@mipmap/ic_avatar"
+                                android:src="@mipmap/ic_avatar2"
                                 android:scaleType="fitXY"
                                 android:layout_height="120dp"/>
                         </androidx.cardview.widget.CardView>
@@ -184,7 +184,7 @@
                             app:cardPreventCornerOverlap="false">
                             <ImageView
                                 android:layout_width="100dp"
-                                android:src="@mipmap/ic_avatar"
+                                android:src="@mipmap/ic_avatar2"
                                 android:scaleType="fitXY"
                                 android:layout_height="100dp"/>
                         </androidx.cardview.widget.CardView>
