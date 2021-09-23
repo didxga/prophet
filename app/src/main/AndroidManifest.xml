@@ -32,6 +32,8 @@
         </activity>
         <activity android:name="com.orange.prophet.ui.MyQuizListActivity">
         </activity>
+        <activity android:name="com.orange.prophet.ui.WebViewActivity">
+        </activity>
         <activity
             android:name="com.orange.prophet.ui.PZSplashscreenActivity"
             android:configChanges="screenSize"
