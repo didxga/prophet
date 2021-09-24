@@ -1,5 +1,6 @@
 package com.orange.prophet.ui.api
 
+import com.orange.prophet.ui.model.AnswerStats
 import com.orange.prophet.ui.model.Question
 import retrofit2.Call
 import retrofit2.http.*
@@ -17,4 +18,6 @@ interface QuestionEndpoint {
     @GET("question/myanswer")
     fun getAnswer(@Query("questionid") questionid: String, @Header("Authorization") token:String): Call<Int>
 
+    @GET("question/answer_stats")
+    fun getAnswerStats(@Query("question_id") questionid: String, @Header("Authorization") token:String): Call<Array<AnswerStats>>
 }
