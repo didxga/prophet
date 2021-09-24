@@ -8,27 +8,8 @@
 
     <WebView
         android:id="@+id/about_webview"
-        android:layout_width="306dp"
-        android:layout_height="416dp"
-        android:layout_marginEnd="52dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294"></WebView>
-
-    <Button
-        android:id="@+id/MoreApps"
-        android:layout_width="154dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="#6AA571"
-        android:text="More Apps"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.797"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_webview"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
