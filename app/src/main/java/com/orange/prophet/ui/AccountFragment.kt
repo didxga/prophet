@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.*
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
@@ -20,6 +22,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
+
 class AccountFragment: Fragment(){
 
     private val mServerURL = BuildConfig.SERVER_URL
@@ -28,11 +31,12 @@ class AccountFragment: Fragment(){
     private lateinit var mButtonMyAccountMore: ImageButton
     private lateinit var mButtonMyAccountLogin: Button
     private lateinit var mButtonAbout: Button
-    private lateinit var mButtonPrivacyPolicy:Button
+    private lateinit var mButtonLegalNotice:Button
     private lateinit var mTextViewUserName: TextView
     private lateinit var mTextViewEmail: TextView
     private lateinit var mButtonLogout: Button
     private lateinit var mImageViewEmail: ImageView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
@@ -42,16 +46,17 @@ class AccountFragment: Fragment(){
         mButtonMyAccountMore= rootView.findViewById(R.id.fragment_me_button_account_more) as ImageButton
         mButtonMyAccountLogin= rootView.findViewById(R.id.fragment_me_button_account_login) as Button
         mButtonAbout = rootView.findViewById(R.id.fragment_me_button_about) as Button
-        mButtonPrivacyPolicy = rootView.findViewById(R.id.fragment_me_button_privacy_policy) as Button
+        mButtonLegalNotice = rootView.findViewById(R.id.fragment_me_button_legal_notice) as Button
         mButtonLogout = rootView.findViewById(R.id.fragment_me_button_logout) as Button
         mTextViewUserName = rootView.findViewById(R.id.fragment_me_text_username) as TextView
         mTextViewEmail = rootView.findViewById(R.id.fragment_me_text_email) as TextView
         mImageViewEmail = rootView.findViewById(R.id.fragment_me_imageView_Email) as ImageView
 
+
         mButtonMyQuizList.setOnClickListener(mButtonListener)
         mButtonMyAccountMore.setOnClickListener(mButtonListener)
         mButtonAbout.setOnClickListener(mButtonListener)
-        mButtonPrivacyPolicy.setOnClickListener(mButtonListener)
+        mButtonLegalNotice.setOnClickListener(mButtonListener)
         mButtonLogout.setOnClickListener(mButtonListener)
         mButtonMyAccountLogin.setOnClickListener(mButtonListener)
 
@@ -79,12 +84,15 @@ class AccountFragment: Fragment(){
                 startActivity(intent)
 
             }
-            R.id.fragment_me_button_privacy_policy -> {
-                //TODO: go to term policy screen
+            R.id.fragment_me_button_legal_notice -> {
+                //show legal notice
+                val intent = Intent(activity, WebViewActivity::class.java)
+                intent.putExtra("type","legal_notice")
+                startActivity(intent)
+
             }
 
             R.id.fragment_me_button_about -> {
-                //TODO: go to about screen
                 val intent = Intent(activity, AboutActivity::class.java)
                 startActivity(intent)
                 }

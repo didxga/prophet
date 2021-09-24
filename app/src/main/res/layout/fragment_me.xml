@@ -26,7 +26,7 @@
         android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_avatar_foreground" />
+        app:srcCompat="@mipmap/ic_avatar2" />
 
     <TextView
         android:id="@+id/fragment_me_text_username"
@@ -39,10 +39,10 @@
         android:maxLines="2"
         android:singleLine="false"
         android:text="TextView"
+        android:textAllCaps="false"
         android:textColor="#F1F0F0"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/fragment_me_photo"
         app:layout_constraintTop_toTopOf="@+id/recyclerView" />
 
@@ -82,10 +82,10 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:singleLine="false"
+        android:textAllCaps="false"
         android:textColor="#F1F0F0"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/fragment_me_imageView_Email"
         app:layout_constraintTop_toBottomOf="@+id/fragment_me_text_username" />
 
@@ -93,15 +93,15 @@
         android:id="@+id/fragment_me_button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:backgroundTint="#6AA571"
         android:text="Logout"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_about" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_about"
+        app:layout_constraintVertical_bias="0.464" />
 
     <ImageView
         android:id="@+id/fragment_me_imageView_Email"
@@ -115,8 +115,8 @@
 
     <Button
         android:id="@+id/fragment_me_button_my_quIz_list"
-        android:layout_width="380dp"
-        android:layout_height="70dp"
+        android:layout_width="373dp"
+        android:layout_height="55dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/rounded_border_account_item"
         android:backgroundTint="#F2DCC2"
@@ -127,20 +127,20 @@
         android:maxLines="2"
         android:singleLine="false"
         android:text="My Quiz List"
+        android:textAllCaps="false"
         android:textColor="#5d3f32"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <Button
-        android:id="@+id/fragment_me_button_privacy_policy"
-        android:layout_width="380dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/fragment_me_button_legal_notice"
+        android:layout_width="373dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/rounded_border_account_item"
         android:backgroundTint="#F2DCC2"
         android:drawableLeft="@drawable/ic_policy"
@@ -149,21 +149,21 @@
         android:gravity="center_vertical"
         android:maxLines="2"
         android:singleLine="false"
-        android:text="Privacy Policy"
+        android:text="Legal Notice"
+        android:textAllCaps="false"
         android:textColor="#5d3f32"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_my_quIz_list" />
 
     <Button
         android:id="@+id/fragment_me_button_about"
-        android:layout_width="380dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="373dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/rounded_border_account_item"
         android:backgroundTint="#F2DCC2"
         android:drawableLeft="@drawable/ic_info"
@@ -172,13 +172,15 @@
         android:gravity="center_vertical"
         android:maxLines="2"
         android:singleLine="false"
-        android:text="About..."
+        android:text="About"
+        android:textAllCaps="false"
         android:textColor="#5d3f32"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_privacy_policy" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_me_button_legal_notice" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
