@@ -108,8 +108,10 @@ class LeaderBoardFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 loading = false
                 if(page == 1) {
                     var result = response.body()!!
-                    inflate(result.subList(0, 3))
-                    rankList.addAll(result.subList(3, result.size))
+                    if(result.size > 0) {
+                        inflate(result.subList(0, 3))
+                        rankList.addAll(result.subList(3, result.size))
+                    }
                 } else {
                     rankList.addAll(response.body()!!)
                 }
