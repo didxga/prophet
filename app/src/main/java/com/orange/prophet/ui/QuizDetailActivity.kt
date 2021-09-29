@@ -12,6 +12,7 @@ import com.orange.prophet.R
 import com.orange.prophet.ui.api.QuestionEndpoint
 import com.orange.prophet.ui.model.Question
 import com.orange.prophet.adapter.QuestionViewAdapter
+import com.orange.prophet.ui.model.AnswerStats
 import kotlinx.android.synthetic.main.activity_quiz_detail.*
 import kotlinx.android.synthetic.main.view_option_text.view.*
 import kotlinx.android.synthetic.main.view_stakced_card.view.*
@@ -29,7 +30,7 @@ class QuizDetailActivity : AppCompatActivity() {
     private var isFinish: Boolean = false
     private lateinit var questionEndpoint: QuestionEndpoint
     private lateinit var questionList: ArrayList<Question>
-
+    private lateinit var answerStatsList: ArrayList<AnswerStats>
     private lateinit var inflater: LayoutInflater
 
     private val questionViewList = ArrayList<QuestionViewAdapter>()
@@ -46,6 +47,7 @@ class QuizDetailActivity : AppCompatActivity() {
         val retrofit: Retrofit = makeRetrofit()
         questionEndpoint = retrofit.create(QuestionEndpoint::class.java)
         questionList = ArrayList<Question>()
+        answerStatsList = ArrayList<AnswerStats>()
 
         inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -67,9 +69,20 @@ class QuizDetailActivity : AppCompatActivity() {
         for (index in questionList.size-1 downTo 0) {
             val question = questionList.get(index)
 
+            //add the answer stats to each option
+            for (index_option in question.option.size-1 downTo 0) {
+                for(index_stats in answerStatsList.size - 1 downTo 0) {
+                    var option = question.option.get(index_option)
+                    val answerStats = answerStatsList.get(index_stats)
+                    if(option.id.equals(answerStats.option_id.toInt()))
+                    {
+                        question.option.get(index_option).percentage = answerStats.percent
+                    }
+                }
+            }
+
             val questionView = QuestionViewAdapter(question, this.inflater, container, isFinish)
             questionViewList.add(questionView)
-
             fetchAnswer(question.id, questionView)
 
             var params = questionView.view.card_scrollable.getLayoutParams() as ViewGroup.MarginLayoutParams
@@ -172,7 +185,10 @@ class QuizDetailActivity : AppCompatActivity() {
                 response: Response<ArrayList<Question>>
             ) {
                 questionList.addAll(response.body()!!)
-                inflate()
+                //inflate()
+                //since for each quiz, currently there is only one question, here we won't use the
+                //loop and just get the one question id.
+                fetchAnswerStatus(questionList.get(questionList.size-1).id)
             }
 
             override fun onFailure(call: Call<ArrayList<Question>>, t: Throwable) {
@@ -186,6 +202,29 @@ class QuizDetailActivity : AppCompatActivity() {
         })
     }
 
+    //get answer percentage
+    private fun fetchAnswerStatus(questionId: String) {
+        val call = questionEndpoint.getAnswerStats(questionId, "")
+        call.enqueue(object : Callback<Array<AnswerStats>> {
+            override fun onResponse(
+                call: Call<Array<AnswerStats>>,
+                response: Response<Array<AnswerStats>>
+            ) {
+                answerStatsList.addAll(response.body()!!)
+                inflate()
+            }
+
+            override fun onFailure(call: Call<Array<AnswerStats>>, t: Throwable) {
+                //${t.message}
+                Toast.makeText(
+                    this@QuizDetailActivity,
+                    "Error occurred while fetching user answer",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
     private fun makeRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(ENDPOINT_URL)
@@ -193,3 +232,4 @@ class QuizDetailActivity : AppCompatActivity() {
             .build()
     }
 }
+

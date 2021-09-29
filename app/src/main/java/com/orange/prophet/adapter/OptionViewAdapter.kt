@@ -36,9 +36,9 @@ class OptionViewAdapter (option: Option, var inflater: LayoutInflater, var conta
         } else {
             optionView.option_text.setTextColor(Color.parseColor("#ffffff"))
             optionView.setBackgroundResource(R.drawable.item_finished_boder)
-            optionView.option_percentage_bar.progress = 10
+            optionView.option_percentage_bar.progress = option.percentage.toFloat().toInt()
             optionView.option_percentage_bar.isEnabled = false
-            optionView.option_percentage_text.text = "10%"
+            optionView.option_percentage_text.text = option.percentage+"%"
         }
     }
 
