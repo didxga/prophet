@@ -36,6 +36,7 @@ class AccountFragment: Fragment(){
     private lateinit var mTextViewEmail: TextView
     private lateinit var mButtonLogout: Button
     private lateinit var mImageViewEmail: ImageView
+    private lateinit var mButtonTerms: Button
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -48,6 +49,7 @@ class AccountFragment: Fragment(){
         mButtonAbout = rootView.findViewById(R.id.fragment_me_button_about) as Button
         mButtonLegalNotice = rootView.findViewById(R.id.fragment_me_button_legal_notice) as Button
         mButtonLogout = rootView.findViewById(R.id.fragment_me_button_logout) as Button
+        mButtonTerms = rootView.findViewById(R.id.fragment_me_button_terms) as Button
         mTextViewUserName = rootView.findViewById(R.id.fragment_me_text_username) as TextView
         mTextViewEmail = rootView.findViewById(R.id.fragment_me_text_email) as TextView
         mImageViewEmail = rootView.findViewById(R.id.fragment_me_imageView_Email) as ImageView
@@ -59,6 +61,7 @@ class AccountFragment: Fragment(){
         mButtonLegalNotice.setOnClickListener(mButtonListener)
         mButtonLogout.setOnClickListener(mButtonListener)
         mButtonMyAccountLogin.setOnClickListener(mButtonListener)
+        mButtonTerms.setOnClickListener(mButtonListener)
 
         val retrofit: Retrofit = makeRetrofit()
         mAccountEndpoint = retrofit.create(AccountEndPoint::class.java)
@@ -91,7 +94,12 @@ class AccountFragment: Fragment(){
                 startActivity(intent)
 
             }
-
+            R.id.fragment_me_button_terms -> {
+                //show legal notice
+                val intent = Intent(activity, WebViewActivity::class.java)
+                intent.putExtra("type","terms_of_use")
+                startActivity(intent)
+            }
             R.id.fragment_me_button_about -> {
                 val intent = Intent(activity, AboutActivity::class.java)
                 startActivity(intent)

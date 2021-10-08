@@ -7,22 +7,24 @@ import androidx.appcompat.app.AppCompatActivity
 import com.orange.prophet.R
 
 class WebViewActivity: AppCompatActivity(){
-        private lateinit var  mLegalNotice: WebView
+        private lateinit var  mWebContent: WebView
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_webview)
             supportActionBar?.hide();
 
-            mLegalNotice = findViewById(R.id.legalnotice_webview)
+            mWebContent = findViewById(R.id.legalnotice_webview)
 
             when (this.intent.getStringExtra("type")) {
                 "legal_notice"->
-                mLegalNotice.loadUrl("file:///android_asset/web/legalNotice.html")
+                    mWebContent.loadUrl("file:///android_asset/web/legalNotice.html")
+                "terms_of_use"->
+                    mWebContent.loadUrl("file:///android_asset/web/CGUGooglePlaystore.html")
 
             }
 
-            mLegalNotice.webViewClient = object : WebViewClient() {
+            mWebContent.webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                     view.loadUrl(url)
                     return true
