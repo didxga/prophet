@@ -26,6 +26,18 @@ android {
         debug {
             buildConfigField "String", 'SERVER_URL', '"http://90.84.177.247:7070/"'
         }
+        releaseUnsigned {
+            minifyEnabled true
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
     }
     defaultConfig {
         buildConfigField "String", 'SERVER_URL', '"http://90.84.177.247:7070/"'
